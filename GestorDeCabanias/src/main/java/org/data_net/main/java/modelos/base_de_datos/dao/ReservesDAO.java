@@ -1,50 +1,31 @@
 package org.data_net.main.java.modelos.base_de_datos.dao;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.data_net.main.java.interfaces.DAO;
-import org.data_net.main.java.modelos.Cabin;
 import org.data_net.main.java.modelos.Reserve;
 
-
-
-
-/**
- *
- * @author Luca
- */
 public class ReservesDAO implements DAO {
     private Connection  connection;
-    private Statement statement;
     private ResultSet rs;
-    private Cabin cabin;
-    private static final String INSERT_SQL = "INSERT INTO reservas( id, inquilino, telefono, mail, cantidad_inq, cabana, fecha_desde, fecha_hasta, costo) VALUES( ?, ?, ?, ?, ?, ?,?, ?, ?)";
-    private static final String DELETE_SQL = "DELETE FROM reservas WHERE id= ";
-    private static final String GET_ALL_SQL = "SELECT * FROM reservas ORDER BY ASC fecha_desde";
-    private static final String GET_SQL = "SELECT * FROM reservas WHERE inquilino= ";
-    //private static final String UPDATE_SQL = "UPDATE cabanas SET etiqueta= ,capacidad=  WHERE id=?"; //todo Revisar VALUES ?
+    private PreparedStatement ps;
     
-    public ReservesDAO(){
-        connection = null;
-        statement = null;
-    }
+    private static final String INSERT_SQL = "INSERT INTO reservas( id, inquilino, telefono, mail, cantidad_inq, cabana, fecha_desde, fecha_hasta, costo) VALUES( ?, ?, ?, ?, ?, ?,?, ?, ?)";
+    private static final String DELETE_SQL = "DELETE FROM reservas WHERE id=? ";
+    private static final String GET_ALL_SQL = "SELECT * FROM reservas ORDER BY ASC fecha_desde";
+    private static final String CHECK_SQL = "SELECT * FROM reservas WHERE id=? ";
+    private static final String UPDATE_SQL = "UPDATE reservas SET inquilino=?, telefono=?, mail=?, cantidad_inq=?, cabana=?, fecha_desde=?, fecha_hasta=?, costo=?  WHERE id=?";
+    
     
     private Connection connect(){
         Connection conn = null;
+        
         try{
             conn = DriverManager.getConnection("jdbc:sqlite:./src/main/java/org/data_net/main/java/modelos/base_de_datos/dao/gestorcabanias.db");
         }catch(SQLException e){
@@ -52,14 +33,16 @@ public class ReservesDAO implements DAO {
         }
         return conn;
     }
-
+    
     @Override
-    public Optional get(String etiqueta) {
-        PreparedStatement ps = null;
+    public Optional check(String id) {
         Optional<String> opt = Optional.empty();
+        
         try{
             connection=this.connect();
-            ps = this.connection.prepareStatement(GET_SQL.concat("'"+etiqueta+"'"));
+            
+            ps = this.connection.prepareStatement(CHECK_SQL);
+            ps.setString(1,id);
             rs=ps.executeQuery();
             opt=Optional.ofNullable(rs.getString(1));
         
@@ -79,8 +62,8 @@ public class ReservesDAO implements DAO {
     
     @Override
     public List getAll() {
-        PreparedStatement ps = null;
         List<Reserve> reserveList=new ArrayList<>();
+        
         try{
             connection=this.connect();
             ps = this.connection.prepareStatement(GET_ALL_SQL);
@@ -91,10 +74,10 @@ public class ReservesDAO implements DAO {
                reserveLoc.setInquilino(rs.getString(2));
                reserveLoc.setTelefono(rs.getString(3));
                reserveLoc.setMail(rs.getString(4));
-               reserveLoc.setCantidad_inq(rs.getInt(5));
+               reserveLoc.setCantidadInq(rs.getInt(5));
                reserveLoc.setCabana(rs.getString(6));
-               reserveLoc.setFecha_desde(rs.getString(7));
-               reserveLoc.setFecha_hasta(rs.getString(8));
+               reserveLoc.setFechaDesde(rs.getString(7));
+               reserveLoc.setFechaHasta(rs.getString(8));
                reserveLoc.setCosto(rs.getInt(9));
                
                reserveList.add(reserveLoc);
@@ -109,15 +92,12 @@ public class ReservesDAO implements DAO {
             }catch(SQLException e){
                 System.err.println(e);
             }
-            
         }
         return reserveList;
     }
 
     @Override
     public void add(Object reserve) {
-        
-        PreparedStatement ps = null;
         Reserve reserveLoc = (Reserve)reserve;
            
         try{
@@ -127,10 +107,10 @@ public class ReservesDAO implements DAO {
             ps.setString(2,reserveLoc.getInquilino());
             ps.setString(3,reserveLoc.getTelefono());
             ps.setString(4,reserveLoc.getMail());
-            ps.setInt(5,reserveLoc.getCantidad_inq());
+            ps.setInt(5,reserveLoc.getCantidadInq());
             ps.setString(6,reserveLoc.getCabana());
-            ps.setString(7,reserveLoc.getFecha_desde());
-            ps.setString(8,reserveLoc.getFecha_hasta());
+            ps.setString(7,reserveLoc.getFechaDesde());
+            ps.setString(8,reserveLoc.getFechaHasta());
             ps.setInt(9,reserveLoc.getCosto());
             
             ps.executeUpdate();
@@ -150,23 +130,21 @@ public class ReservesDAO implements DAO {
 
     @Override
     public void update(Object reserve) {
-        PreparedStatement ps = null;
         Reserve reserveLoc = (Reserve)reserve;
            
         try{
             connection=this.connect();
             
-            ps = this.connection.prepareStatement("UPDATE cabanas SET " //todo Revisar VALUES ?
-                    + "inquilino= "+"'"+reserveLoc.getInquilino()+"'" 
-                    +" ,telefono= "+"'"+reserveLoc.getTelefono()+"'"
-                    +" ,mail= "+"'"+reserveLoc.getMail()+"'"
-                    +" ,cantidad_inq= "+"'"+reserveLoc.getCantidad_inq()+"'"
-                    +" ,cabana= "+"'"+reserveLoc.getCabana()+"'"
-                    +" ,fecha_desde= "+"'"+reserveLoc.getFecha_desde()+"'"
-                    +" ,fecha_hasta= "+"'"+reserveLoc.getFecha_hasta()+"'"
-                    +" ,costo= "+"'"+reserveLoc.getCosto()+"'"
-                    +" WHERE id= "+"'"+reserveLoc.getId()+"'");
-           
+            ps = this.connection.prepareStatement(UPDATE_SQL);
+            ps.setString(1,reserveLoc.getInquilino());
+            ps.setString(2,reserveLoc.getTelefono());
+            ps.setString(3,reserveLoc.getMail());
+            ps.setInt(4,reserveLoc.getCantidadInq());
+            ps.setString(5,reserveLoc.getCabana());
+            ps.setString(6,reserveLoc.getFechaDesde());
+            ps.setString(7,reserveLoc.getFechaHasta());
+            ps.setInt(8,reserveLoc.getCosto());
+            ps.setString(9,reserveLoc.getId());
             ps.executeUpdate();
              
         }catch(SQLException e){
@@ -184,13 +162,12 @@ public class ReservesDAO implements DAO {
 
     @Override
     public void delete(Object reserve) {
-     
-        PreparedStatement ps = null;
         Reserve reserveLoc = (Reserve)reserve;
            
         try{
             connection=this.connect();
-            ps = this.connection.prepareStatement(DELETE_SQL.concat("'"+reserveLoc.getId()+"'"));
+            ps = this.connection.prepareStatement(DELETE_SQL);
+            ps.setString(1,reserveLoc.getId());
             ps.executeUpdate();
         
         }catch(SQLException e){
@@ -205,5 +182,4 @@ public class ReservesDAO implements DAO {
             }
         }
     }
-    
 }
