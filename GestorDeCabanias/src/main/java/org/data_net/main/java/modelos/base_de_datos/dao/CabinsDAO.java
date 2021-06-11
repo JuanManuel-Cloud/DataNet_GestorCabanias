@@ -31,7 +31,7 @@ public class CabinsDAO implements DAO {
     private Statement statement;
     private ResultSet rs;
     private Cabin cabin;
-    private static final String INSERT_SQL = "INSERT INTO cabanas( id, etiqueta, capacidad) VALUES( ?, ?, ?)";
+    private static final String INSERT_SQL = "INSERT INTO cabanas ( id, etiqueta, capacidad) VALUES( ?, ?, ?)";
     private static final String DELETE_SQL = "DELETE FROM cabanas WHERE id= ";
     private static final String GET_ALL_SQL = "SELECT * FROM cabanas ORDER BY ASC etiqueta";
     private static final String GET_SQL = "SELECT * FROM cabanas WHERE etiqueta= ";
@@ -45,7 +45,7 @@ public class CabinsDAO implements DAO {
     private Connection connect(){
         Connection conn = null;
         try{
-            conn = DriverManager.getConnection("jdbc:sqlite:D:/Facultad/IngenieriaDeSoftware/Database/gestorcabanias.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:./src/main/java/org/data_net/main/java/modelos/base_de_datos/dao/gestorcabanias.db");
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
