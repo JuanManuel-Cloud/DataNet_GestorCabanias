@@ -8,6 +8,7 @@ public class Cabin {
     private int capacidad;
     
     public Cabin(){
+        id = RandomStringUtils.randomAlphanumeric(8);
     }
 
     public Cabin(String etiqueta,int capacidad){
