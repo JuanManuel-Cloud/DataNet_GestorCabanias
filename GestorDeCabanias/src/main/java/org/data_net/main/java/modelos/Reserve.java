@@ -1,24 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.data_net.main.java.modelos;
+
 import org.apache.commons.lang3.RandomStringUtils;
 
-/**
- *
- * @author Luca
- */
 public class Reserve {
     private String id;
     private String inquilino;
     private String telefono;
     private String mail;
-    private int cantidad_inq;
+    private int cantidadInq;
     private String cabana;
-    private String fecha_desde;
-    private String fecha_hasta;
+    private String fechaDesde;
+    private String fechaHasta;
     private int costo;
     
     
@@ -30,10 +22,10 @@ public class Reserve {
         this.inquilino=inquilino;
         this.telefono=telefono;
         this.mail=mail;
-        this.cantidad_inq=cantidad_inq;
+        this.cantidadInq=cantidad_inq;
         this.cabana=cabana;
-        this.fecha_desde=fecha_desde;
-        this.fecha_hasta=fecha_hasta;
+        this.fechaDesde=fecha_desde;
+        this.fechaHasta=fecha_hasta;
         this.costo=costo;
     }
 
@@ -69,12 +61,12 @@ public class Reserve {
         this.mail = mail;
     }
 
-    public int getCantidad_inq() {
-        return cantidad_inq;
+    public int getCantidadInq() {
+        return cantidadInq;
     }
 
-    public void setCantidad_inq(int cantidad_inq) {
-        this.cantidad_inq = cantidad_inq;
+    public void setCantidadInq(int cantidadInq) {
+        this.cantidadInq = cantidadInq;
     }
 
     public String getCabana() {
@@ -85,20 +77,20 @@ public class Reserve {
         this.cabana = cabana;
     }
 
-    public String getFecha_desde() {
-        return fecha_desde;
+    public String getFechaDesde() {
+        return fechaDesde;
     }
 
-    public void setFecha_desde(String fecha_desde) {
-        this.fecha_desde = fecha_desde;
+    public void setFechaDesde(String fechaDesde) {
+        this.fechaDesde = fechaDesde;
     }
 
-    public String getFecha_hasta() {
-        return fecha_hasta;
+    public String getFechaHasta() {
+        return fechaHasta;
     }
 
-    public void setFecha_hasta(String fecha_hasta) {
-        this.fecha_hasta = fecha_hasta;
+    public void setFechaHasta(String fechaHasta) {
+        this.fechaHasta = fechaHasta;
     }
 
     public int getCosto() {
