@@ -2,7 +2,10 @@ package org.data_net.main.java.vistas;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import org.data_net.main.java.controladores.MainController;
+import org.data_net.main.java.modelos.StatsModel;
 
 public class MainWindow extends javax.swing.JFrame{
     public MainWindow() {
@@ -60,6 +63,7 @@ public class MainWindow extends javax.swing.JFrame{
         LeftPanel = new javax.swing.JPanel();
         reservasButton = new javax.swing.JButton();
         cabanasButton = new javax.swing.JButton();
+        logo = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -374,7 +378,7 @@ public class MainWindow extends javax.swing.JFrame{
             .addGroup(DataPanelLayout.createSequentialGroup()
                 .addGap(415, 415, 415)
                 .addComponent(OpsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
             .addGroup(DataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(DataPanelLayout.createSequentialGroup()
                     .addContainerGap()
@@ -420,25 +424,36 @@ public class MainWindow extends javax.swing.JFrame{
             }
         });
 
+        logo.setMaximumSize(new java.awt.Dimension(128, 128));
+        logo.setMinimumSize(new java.awt.Dimension(128, 128));
+        logo.setPreferredSize(new java.awt.Dimension(128, 128));
+
         javax.swing.GroupLayout LeftPanelLayout = new javax.swing.GroupLayout(LeftPanel);
         LeftPanel.setLayout(LeftPanelLayout);
         LeftPanelLayout.setHorizontalGroup(
             LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LeftPanelLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LeftPanelLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addGroup(LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(reservasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cabanasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LeftPanelLayout.createSequentialGroup()
+                        .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LeftPanelLayout.createSequentialGroup()
+                        .addGroup(LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(reservasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cabanasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39))))
         );
         LeftPanelLayout.setVerticalGroup(
             LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LeftPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(76, 76, 76)
+                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cabanasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(41, 41, 41)
                 .addComponent(reservasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79))
+                .addGap(82, 82, 82))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -510,6 +525,7 @@ public class MainWindow extends javax.swing.JFrame{
     public static void main(String args[]) {
        MainWindow v=new MainWindow();
        MainController con=new MainController(v);
+       StatsModel statsModel=new StatsModel(con);
        v.setVisible(true);
        v.setLocationRelativeTo(null);
     }
@@ -583,6 +599,7 @@ public class MainWindow extends javax.swing.JFrame{
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     public javax.swing.JButton listarButton;
+    private javax.swing.JLabel logo;
     public javax.swing.JButton nuevoButton;
     public javax.swing.JButton reservasButton;
     public javax.swing.JTextField txtCabana;

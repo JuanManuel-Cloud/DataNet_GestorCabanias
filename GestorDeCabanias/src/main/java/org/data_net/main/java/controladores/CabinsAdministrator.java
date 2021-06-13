@@ -21,6 +21,8 @@ public class CabinsAdministrator implements Administrator {
     public Object insert() {
         String etiqueta = mainWindow.txtEtiqueta.getText();
         String capacidad = mainWindow.txtCapacidad.getText();
+        
+        
         return new Cabin(etiqueta,Integer.parseInt(capacidad));
     }
 

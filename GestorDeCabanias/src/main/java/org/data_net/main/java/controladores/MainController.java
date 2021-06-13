@@ -8,12 +8,15 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.data_net.main.java.interfaces.Administrator;
 import org.data_net.main.java.interfaces.DAO;
+import org.data_net.main.java.interfaces.dataObserver;
 import org.data_net.main.java.modelos.base_de_datos.dao.CabinsDAO;
 import org.data_net.main.java.modelos.base_de_datos.dao.ReservesDAO;
 import org.data_net.main.java.vistas.MainWindow;
+import org.data_net.main.java.interfaces.dataSubject;
 
-public class MainController implements ActionListener {
+public class MainController implements ActionListener,dataSubject {
     
+    private ArrayList observers;
     MainWindow vista = new MainWindow();
     DefaultTableModel modeloCabin = new DefaultTableModel();
     DefaultTableModel modeloReserve = new DefaultTableModel();
@@ -22,6 +25,7 @@ public class MainController implements ActionListener {
     Administrator administrator;
     
     public MainController(MainWindow v){
+        observers=new ArrayList();
         this.vista = v;
         this.vista.listarButton.addActionListener(this);
         this.vista.agregarButton.addActionListener(this);
@@ -61,7 +65,7 @@ public class MainController implements ActionListener {
         }
         if (e.getSource() == vista.agregarButton) {
             System.out.println("Se apreto boton Agregar");
-            //List<Object> addList=new ArrayList();
+            
             dao.add(administrator.insert());
             administrator.limpiar();
      
@@ -81,6 +85,7 @@ public class MainController implements ActionListener {
         List<Object>lista;
         lista=dao.getAll();
         administrator.getAll(lista);
+        notifyObservers(lista);
     }
     
     //Seleccion de strategy DAO
@@ -92,7 +97,7 @@ public class MainController implements ActionListener {
     private void setAdministrator(Administrator administrator){
         this.administrator=administrator;
     }
-    
+  
     private void limpiarPanelReservas(){
             //Panel de Seleccion
             vista.InputPanel.removeAll();
@@ -120,5 +125,25 @@ public class MainController implements ActionListener {
         vista.ListPanel.repaint();
         vista.ListPanel.revalidate();
         getAll();
+
+    @Override
+    public void registerObserver(dataObserver o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(dataObserver o) {
+        int i= observers.indexOf(o);
+        if(i>=0){
+            observers.remove(i);
+        }
+    }
+
+    @Override
+    public void notifyObservers(List lista) {
+        for(int i=0;i<observers.size();i++){
+            dataObserver observer=(dataObserver)observers.get(i);
+            observer.update(lista);
+        }
     }
 }
