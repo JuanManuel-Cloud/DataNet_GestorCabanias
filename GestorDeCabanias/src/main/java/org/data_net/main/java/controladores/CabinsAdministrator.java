@@ -23,6 +23,8 @@ public class CabinsAdministrator implements Administrator {
     public Object insert() {
         String etiqueta = mainWindow.txtEtiqueta.getText();
         String capacidad = mainWindow.txtCapacidad.getText();
+        
+        
         return new Cabin(etiqueta,Integer.parseInt(capacidad));
     }
 
@@ -32,6 +34,7 @@ public class CabinsAdministrator implements Administrator {
         List<Cabin> listaCabins=new ArrayList<Cabin>();
         listaCabins=(ArrayList<Cabin>) lista;
         modelo = (DefaultTableModel) mainWindow.tablaCabanas.getModel();
+        mainWindow.tablaCabanas.setModel(modelo);
         //mainWindow.tablaCabanas.setModel(modelo);
         Object[] objeto = new Object[3];
         for (int i = 0; i < lista.size(); i++) {
@@ -40,7 +43,7 @@ public class CabinsAdministrator implements Administrator {
             objeto[2] = listaCabins.get(i).getCapacidad();
             modelo.addRow(objeto);
         }
-        mainWindow.tablaCabanas.setModel(modelo);
+        
     }
     
 
