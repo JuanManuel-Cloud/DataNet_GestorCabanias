@@ -114,21 +114,20 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="LeftPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="ListPanel" max="32767" attributes="0"/>
+                  <Component id="ListPanel" pref="812" max="32767" attributes="0"/>
                   <Component id="DataPanel" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="editarButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="nuevoButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Component id="StatsPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
           </Group>
@@ -322,16 +321,16 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="415" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="OpsPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="138" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="InputPanel" min="-2" pref="401" max="-2" attributes="0"/>
-                      <EmptySpace pref="191" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="InputPanel" pref="530" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -383,17 +382,17 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel9" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel10" alignment="0" pref="150" max="32767" attributes="0"/>
+                              <Component id="jLabel10" alignment="0" pref="85" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtCapacidad" alignment="1" pref="215" max="32767" attributes="0"/>
-                              <Component id="txtEtiqueta" alignment="1" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtEtiqueta" min="-2" pref="397" max="-2" attributes="0"/>
+                              <Component id="txtCapacidad" min="-2" pref="397" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace pref="92" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -401,14 +400,14 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtEtiqueta" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtEtiqueta" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtCapacidad" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCapacidad" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="223" max="32767" attributes="0"/>
                       </Group>
@@ -475,39 +474,32 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel13" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel14" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel15" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel17" max="32767" attributes="0"/>
+                              <Component id="jLabel18" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel13" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel14" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel15" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel17" max="32767" attributes="0"/>
-                                      <Component id="jLabel18" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel19" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel19" pref="41" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel20" pref="150" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jLabel20" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtCosto" max="32767" attributes="0"/>
                               <Component id="txtHasta" max="32767" attributes="0"/>
                               <Component id="txtDesde" max="32767" attributes="0"/>
                               <Component id="txtCabana" max="32767" attributes="0"/>
-                              <Component id="txtCantInq" alignment="0" pref="215" max="32767" attributes="0"/>
+                              <Component id="txtCantInq" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtMail" alignment="1" max="32767" attributes="0"/>
                               <Component id="txtTelefono" alignment="1" max="32767" attributes="0"/>
-                              <Component id="txtInquilino" alignment="1" max="32767" attributes="0"/>
+                              <Component id="txtInquilino" alignment="1" pref="397" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
