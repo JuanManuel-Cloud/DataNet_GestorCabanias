@@ -10,8 +10,12 @@ import org.data_net.main.java.vistas.MainWindow;
 
 public class ReservesAdministrator implements Administrator  {
     private MainWindow mainWindow;
+    private DefaultTableModel modelo = new DefaultTableModel();
+
     public ReservesAdministrator(MainWindow mainWindow){
         this.mainWindow=mainWindow;
+        modelo = (DefaultTableModel) mainWindow.getTablaReserva().getModel();
+
     }
     
     @Override
@@ -31,12 +35,10 @@ public class ReservesAdministrator implements Administrator  {
     
     @Override
     public void getAll(List lista) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        List<Reserve> listaReserves=new ArrayList<Reserve>();
+        limpiarTabla();
+        List<Reserve> listaReserves;
         listaReserves=(ArrayList<Reserve>) lista;
-        
-        modelo = (DefaultTableModel) mainWindow.tablaCabanas.getModel();
-        
+                
         Object[] objeto = new Object[9];
         for (int i = 0; i < lista.size(); i++) {
             objeto[0] = listaReserves.get(i).getId();
@@ -50,17 +52,17 @@ public class ReservesAdministrator implements Administrator  {
             objeto[8] = listaReserves.get(i).getCosto();
             modelo.addRow(objeto);
         }
-        mainWindow.tablaCabanas.setModel(modelo);
+        mainWindow.getTablaReserva().setModel(modelo);
     }
 
     @Override
     public String delete() {
-        int fila = mainWindow.tablaReservas.getSelectedRow();
+        int fila = mainWindow.getTablaReserva().getSelectedRow();
         if (fila == -1) {
             JOptionPane.showMessageDialog(mainWindow, "Debe Seleccionar una Fila");
             return "";
         } else {
-            String id = mainWindow.tablaReservas.getValueAt(fila, 0).toString();
+            String id = mainWindow.getTablaReserva().getValueAt(fila, 0).toString();
             return id;
         }
     }
@@ -88,4 +90,11 @@ public class ReservesAdministrator implements Administrator  {
         mainWindow.txtEtiqueta.requestFocus();
     }
     
+    @Override
+    public void limpiarTabla() {
+        for (int i = 0; i < mainWindow.getTablaReserva().getRowCount(); i++) {
+                modelo.removeRow(i);
+                i = i - 1;
+            }
+    }
 }

@@ -38,27 +38,13 @@ public class MainController implements ActionListener,dataSubject {
                 
         dao=new CabinsDAO();
         administrator=new CabinsAdministrator(vista);
-        
-        
     };
     
     @Override
     public void actionPerformed(ActionEvent e) {
       
         if (e.getSource() == vista.reservasButton) {
-            System.out.println("Se apreto boton Reservas");
-           
-            //Panel de Seleccion
-            vista.InputPanel.removeAll();
-            vista.InputPanel.add(vista.ReserveInput);
-            vista.InputPanel.repaint();
-            vista.InputPanel.revalidate();
-            
-            //Panel de la Tabla
-            vista.ListPanel.removeAll();
-            vista.ListPanel.add(vista.ListReservas);
-            vista.ListPanel.repaint();
-            vista.ListPanel.revalidate();
+            limpiarPanelReservas();
             
             //Seleccion de Strategy
             setTipoDAO(new ReservesDAO());
@@ -68,18 +54,7 @@ public class MainController implements ActionListener,dataSubject {
             getAll();
         }
         if (e.getSource() == vista.cabanasButton) {
-            System.out.println("Se apreto boton Cabanas");
-            //Panel de Seleccion
-            vista.InputPanel.removeAll();
-            vista.InputPanel.add(vista.CabinInput);
-            vista.InputPanel.repaint();
-            vista.InputPanel.revalidate();
-            
-            //Panel de la Tabla
-            vista.ListPanel.removeAll();
-            vista.ListPanel.add(vista.ListCabanas);
-            vista.ListPanel.repaint();
-            vista.ListPanel.revalidate();
+            limpiarPanelCabanas();
             
             //Seleccion de Strategy(DAO)
             setTipoDAO(new CabinsDAO());
@@ -107,7 +82,7 @@ public class MainController implements ActionListener,dataSubject {
     
     //Metodo para mostrar en tabla  //todo revisar no funciona la parte grafica, dao  trae la lista con los objetos correctamente
     private void getAll(){
-        List<Object>lista=new ArrayList<>();
+        List<Object>lista;
         lista=dao.getAll();
         administrator.getAll(lista);
         notifyObservers(lista);
@@ -122,6 +97,34 @@ public class MainController implements ActionListener,dataSubject {
     private void setAdministrator(Administrator administrator){
         this.administrator=administrator;
     }
+  
+    private void limpiarPanelReservas(){
+            //Panel de Seleccion
+            vista.InputPanel.removeAll();
+            vista.InputPanel.add(vista.ReserveInput);
+            vista.InputPanel.repaint();
+            vista.InputPanel.revalidate();
+            
+            //Panel de la Tabla
+            vista.ListPanel.removeAll();
+            vista.ListPanel.add(vista.getListReserva());
+            vista.ListPanel.repaint();
+            vista.ListPanel.revalidate();
+            getAll();
+    }
+    private void limpiarPanelCabanas() {
+        //Panel de Seleccion
+        vista.InputPanel.removeAll();
+        vista.InputPanel.add(vista.CabinInput);
+        vista.InputPanel.repaint();
+        vista.InputPanel.revalidate();
+           
+        //Panel de la Tabla
+        vista.ListPanel.removeAll();
+        vista.ListPanel.add(vista.getListCabana());
+        vista.ListPanel.repaint();
+        vista.ListPanel.revalidate();
+        getAll();
 
     @Override
     public void registerObserver(dataObserver o) {

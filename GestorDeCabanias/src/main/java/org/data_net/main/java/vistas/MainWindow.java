@@ -1,5 +1,7 @@
 package org.data_net.main.java.vistas;
 
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import org.data_net.main.java.controladores.MainController;
@@ -22,10 +24,10 @@ public class MainWindow extends javax.swing.JFrame{
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
         ListPanel = new javax.swing.JPanel();
-        ListCabanas = new javax.swing.JScrollPane();
-        tablaCabanas = new javax.swing.JTable();
-        ListReservas = new javax.swing.JScrollPane();
-        tablaReservas = new javax.swing.JTable();
+        ListCabana = new javax.swing.JScrollPane();
+        TablaCabana = new javax.swing.JTable();
+        ListReserva = new javax.swing.JScrollPane();
+        TablaReserva = new javax.swing.JTable();
         DataPanel = new javax.swing.JPanel();
         InputPanel = new javax.swing.JLayeredPane();
         CabinInput = new javax.swing.JPanel();
@@ -123,13 +125,7 @@ public class MainWindow extends javax.swing.JFrame{
         ListPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle"));
         ListPanel.setLayout(new java.awt.CardLayout());
 
-        tablaCabanas = new javax.swing.JTable(){
-            public boolean isCellEditable(int fila,int col){
-                return false;
-            }
-        };
-        tablaCabanas.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        tablaCabanas.setModel(new javax.swing.table.DefaultTableModel(
+        TablaCabana.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -137,46 +133,21 @@ public class MainWindow extends javax.swing.JFrame{
                 "ID", "Etiqueta", "Capacidad"
             }
         ));
-        tablaCabanas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tablaCabanas.setFocusable(false);
-        tablaCabanas.setRowMargin(4);
-        tablaCabanas.getTableHeader().setReorderingAllowed(false);
-        ListCabanas.setViewportView(tablaCabanas);
+        ListCabana.setViewportView(TablaCabana);
 
-        ListPanel.add(ListCabanas, "card2");
+        ListPanel.add(ListCabana, "card2");
 
-        tablaCabanas = new javax.swing.JTable(){
-            public boolean isCellEditable(int fila,int col){
-                return false;
-            }
-        };
-        tablaReservas.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        tablaReservas.setModel(new javax.swing.table.DefaultTableModel(
+        TablaReserva.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Inquilino", "Telefono", "Mail", "Cant Inq", "Cabaña", "Desde", "Hasta", "Costo"
+                "ID", "Inquilino", "Telefono", "Mail", "CantInq", "Cabana", "FechaDesde", "FechaHasta", "Costo"
             }
         ));
-        tablaReservas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tablaReservas.setFocusable(false);
-        tablaReservas.setRowMargin(4);
-        tablaReservas.getTableHeader().setReorderingAllowed(false);
-        ListReservas.setViewportView(tablaReservas);
-        if (tablaReservas.getColumnModel().getColumnCount() > 0) {
-            tablaReservas.getColumnModel().getColumn(0).setMinWidth(50);
-            tablaReservas.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tablaReservas.getColumnModel().getColumn(0).setMaxWidth(3050);
-            tablaReservas.getColumnModel().getColumn(4).setMinWidth(60);
-            tablaReservas.getColumnModel().getColumn(4).setPreferredWidth(60);
-            tablaReservas.getColumnModel().getColumn(6).setPreferredWidth(60);
-            tablaReservas.getColumnModel().getColumn(7).setPreferredWidth(50);
-            tablaReservas.getColumnModel().getColumn(8).setMinWidth(50);
-            tablaReservas.getColumnModel().getColumn(8).setPreferredWidth(50);
-        }
+        ListReserva.setViewportView(TablaReserva);
 
-        ListPanel.add(ListReservas, "card2");
+        ListPanel.add(ListReserva, "card3");
 
         DataPanel.setBackground(new java.awt.Color(92, 160, 142));
         DataPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
@@ -557,7 +528,38 @@ public class MainWindow extends javax.swing.JFrame{
        StatsModel statsModel=new StatsModel(con);
        v.setVisible(true);
        v.setLocationRelativeTo(null);
-       
+    }
+
+    public JTable getTablaCabana() {
+        return TablaCabana;
+    }
+
+    public void setTablaCabana(JTable TablaCabana) {
+        this.TablaCabana = TablaCabana;
+    }
+
+    public JTable getTablaReserva() {
+        return TablaReserva;
+    }
+
+    public void setTablaReserva(JTable TablaReserva) {
+        this.TablaReserva = TablaReserva;
+    }
+
+    public JScrollPane getListCabana() {
+        return ListCabana;
+    }
+
+    public void setListCabana(JScrollPane ListCabana) {
+        this.ListCabana = ListCabana;
+    }
+
+    public JScrollPane getListReserva() {
+        return ListReserva;
+    }
+
+    public void setListReserva(JScrollPane ListReserva) {
+        this.ListReserva = ListReserva;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -565,12 +567,14 @@ public class MainWindow extends javax.swing.JFrame{
     private javax.swing.JPanel DataPanel;
     public javax.swing.JLayeredPane InputPanel;
     private javax.swing.JPanel LeftPanel;
-    public javax.swing.JScrollPane ListCabanas;
+    private javax.swing.JScrollPane ListCabana;
     public javax.swing.JPanel ListPanel;
-    public javax.swing.JScrollPane ListReservas;
+    private javax.swing.JScrollPane ListReserva;
     private javax.swing.JPanel OpsPanel;
     public javax.swing.JPanel ReserveInput;
     private javax.swing.JPanel StatsPanel;
+    private javax.swing.JTable TablaCabana;
+    private javax.swing.JTable TablaReserva;
     public javax.swing.JButton actualizarButton;
     public javax.swing.JButton agregarButton;
     public javax.swing.JButton borrarButton;
@@ -598,8 +602,6 @@ public class MainWindow extends javax.swing.JFrame{
     private javax.swing.JLabel logo;
     public javax.swing.JButton nuevoButton;
     public javax.swing.JButton reservasButton;
-    public javax.swing.JTable tablaCabanas;
-    public javax.swing.JTable tablaReservas;
     public javax.swing.JTextField txtCabana;
     public javax.swing.JTextField txtCantInq;
     public javax.swing.JTextField txtCapacidad;
