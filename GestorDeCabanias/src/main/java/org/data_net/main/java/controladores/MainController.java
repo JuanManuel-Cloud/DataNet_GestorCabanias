@@ -8,11 +8,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.data_net.main.java.interfaces.Administrator;
 import org.data_net.main.java.interfaces.DAO;
-import org.data_net.main.java.interfaces.dataObserver;
 import org.data_net.main.java.modelos.base_de_datos.dao.CabinsDAO;
 import org.data_net.main.java.modelos.base_de_datos.dao.ReservesDAO;
 import org.data_net.main.java.vistas.MainWindow;
 import org.data_net.main.java.interfaces.DataSubject;
+import org.data_net.main.java.interfaces.DataObserver;
 
 public class MainController implements ActionListener, DataSubject {
 
@@ -131,12 +131,12 @@ public class MainController implements ActionListener, DataSubject {
     }
 
     @Override
-    public void registerObserver(dataObserver o) {
+    public void registerObserver(DataObserver o) {
         observers.add(o);
     }
 
     @Override
-    public void removeObserver(dataObserver o) {
+    public void removeObserver(DataObserver o) {
         int i = observers.indexOf(o);
         if (i >= 0) {
             observers.remove(i);
@@ -146,7 +146,7 @@ public class MainController implements ActionListener, DataSubject {
     @Override
     public void notifyObservers(List lista) {
         for (int i = 0; i < observers.size(); i++) {
-            dataObserver observer = (dataObserver) observers.get(i);
+            DataObserver observer = (DataObserver) observers.get(i);
             observer.update(lista);
         }
     }
