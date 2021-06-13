@@ -15,6 +15,7 @@ public class Reserve {
     
     
     public Reserve(){
+        id = RandomStringUtils.randomAlphanumeric(8);
     }
     
     public Reserve(String inquilino,String telefono,String mail, int cantidad_inq,String cabana,String fecha_desde,String fecha_hasta,int costo){

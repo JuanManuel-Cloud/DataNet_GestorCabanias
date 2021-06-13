@@ -18,7 +18,8 @@ public class ReservesDAO implements DAO {
     
     private static final String INSERT_SQL = "INSERT INTO reservas( id, inquilino, telefono, mail, cantidad_inq, cabana, fecha_desde, fecha_hasta, costo) VALUES( ?, ?, ?, ?, ?, ?,?, ?, ?)";
     private static final String DELETE_SQL = "DELETE FROM reservas WHERE id=? ";
-    private static final String GET_ALL_SQL = "SELECT * FROM reservas ORDER BY ASC fecha_desde";
+    private static final String GET_ALL_SQL = "SELECT * FROM reservas";
+    //"SELECT * FROM reservas ORDER BY ASC fecha_desde";
     private static final String CHECK_SQL = "SELECT * FROM reservas WHERE id=? ";
     private static final String UPDATE_SQL = "UPDATE reservas SET inquilino=?, telefono=?, mail=?, cantidad_inq=?, cabana=?, fecha_desde=?, fecha_hasta=?, costo=?  WHERE id=?";
     
@@ -161,13 +162,12 @@ public class ReservesDAO implements DAO {
     }
 
     @Override
-    public void delete(Object reserve) {
-        Reserve reserveLoc = (Reserve)reserve;
-           
+    public void delete(String id) {
+        
         try{
             connection=this.connect();
             ps = this.connection.prepareStatement(DELETE_SQL);
-            ps.setString(1,reserveLoc.getId());
+            ps.setString(1,id);
             ps.executeUpdate();
         
         }catch(SQLException e){

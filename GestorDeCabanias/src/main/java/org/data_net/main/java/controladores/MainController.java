@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.data_net.main.java.interfaces.Administrator;
 import org.data_net.main.java.interfaces.DAO;
@@ -14,7 +15,8 @@ import org.data_net.main.java.vistas.MainWindow;
 public class MainController implements ActionListener {
     
     MainWindow vista = new MainWindow();
-    DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel modeloCabin = new DefaultTableModel();
+    DefaultTableModel modeloReserve = new DefaultTableModel();
     
     DAO dao;
     Administrator administrator;
@@ -29,9 +31,10 @@ public class MainController implements ActionListener {
         this.vista.nuevoButton.addActionListener(this);
         this.vista.cabanasButton.addActionListener(this);
         this.vista.reservasButton.addActionListener(this);
-        
+                
         dao=new CabinsDAO();
         administrator=new CabinsAdministrator(vista);
+        
         
     };
     
@@ -56,6 +59,9 @@ public class MainController implements ActionListener {
             //Seleccion de Strategy
             setTipoDAO(new ReservesDAO());
             setAdministrator(new ReservesAdministrator(vista));
+            
+            //Muestra todas las cabanas
+            getAll();
         }
         if (e.getSource() == vista.cabanasButton) {
             System.out.println("Se apreto boton Cabanas");
@@ -74,19 +80,40 @@ public class MainController implements ActionListener {
             //Seleccion de Strategy(DAO)
             setTipoDAO(new CabinsDAO());
             setAdministrator(new CabinsAdministrator(vista));
+            
+            //Muestra todas las reservas
+            getAll();
         }
         if (e.getSource() == vista.agregarButton) {
             System.out.println("Se apreto boton Agregar");
             //List<Object> addList=new ArrayList();
             dao.add(administrator.insert());
+            administrator.limpiar();
      
         }
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        if (e.getSource() == vista.borrarButton) {
+            String id=administrator.delete();
+            if(!id.equals("")){
+                dao.delete(id);
+                JOptionPane.showMessageDialog(vista, "Se ha eliminado correctamente");
+            }  
+        } 
     }
+    
+    //Metodo para mostrar en tabla  //todo revisar no funciona la parte grafica, dao  trae la lista con los objetos correctamente
+    private void getAll(){
+        List<Object>lista=new ArrayList<>();
+        lista=dao.getAll();
+        administrator.getAll(lista);
+    }
+    
+    //Seleccion de strategy DAO
     private void setTipoDAO(DAO dao){
         this.dao=dao;
     }
     
+    //Seleccion de strategy Administrator
     private void setAdministrator(Administrator administrator){
         this.administrator=administrator;
     }

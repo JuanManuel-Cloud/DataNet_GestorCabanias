@@ -1,6 +1,9 @@
 package org.data_net.main.java.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import org.data_net.main.java.interfaces.Administrator;
 import org.data_net.main.java.modelos.Reserve;
 import org.data_net.main.java.vistas.MainWindow;
@@ -25,14 +28,41 @@ public class ReservesAdministrator implements Administrator  {
         return new Reserve(inquilino,telefono,mail,Integer.parseInt(cantInq),cabana,desde,hasta,Integer.parseInt(costo));
     }
 
+    
     @Override
-    public List<Object> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void getAll(List lista) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        List<Reserve> listaReserves=new ArrayList<Reserve>();
+        listaReserves=(ArrayList<Reserve>) lista;
+        
+        modelo = (DefaultTableModel) mainWindow.tablaCabanas.getModel();
+        
+        Object[] objeto = new Object[9];
+        for (int i = 0; i < lista.size(); i++) {
+            objeto[0] = listaReserves.get(i).getId();
+            objeto[1] = listaReserves.get(i).getInquilino();
+            objeto[2] = listaReserves.get(i).getTelefono();
+            objeto[3] = listaReserves.get(i).getMail();
+            objeto[4] = listaReserves.get(i).getCantidadInq();
+            objeto[5] = listaReserves.get(i).getCabana();
+            objeto[6] = listaReserves.get(i).getFechaDesde();
+            objeto[7] = listaReserves.get(i).getFechaHasta();
+            objeto[8] = listaReserves.get(i).getCosto();
+            modelo.addRow(objeto);
+        }
+        mainWindow.tablaCabanas.setModel(modelo);
     }
 
     @Override
-    public void delete() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String delete() {
+        int fila = mainWindow.tablaReservas.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(mainWindow, "Debe Seleccionar una Fila");
+            return "";
+        } else {
+            String id = mainWindow.tablaReservas.getValueAt(fila, 0).toString();
+            return id;
+        }
     }
 
     @Override
@@ -43,6 +73,19 @@ public class ReservesAdministrator implements Administrator  {
     @Override
     public Object check() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public void limpiar() {
+        mainWindow.txtInquilino.setText("");
+        mainWindow.txtTelefono.setText("");
+        mainWindow.txtMail.setText("");
+        mainWindow.txtCantInq.setText("");
+        mainWindow.txtCabana.setText("");
+        mainWindow.txtDesde.setText("");
+        mainWindow.txtHasta.setText("");
+        mainWindow.txtCosto.setText("");
+        mainWindow.txtEtiqueta.requestFocus();
     }
     
 }

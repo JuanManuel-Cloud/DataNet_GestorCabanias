@@ -18,7 +18,8 @@ public class CabinsDAO implements DAO {
     
     private static final String INSERT_SQL = "INSERT INTO cabanas ( id, etiqueta, capacidad) VALUES( ?, ?, ?)";
     private static final String DELETE_SQL = "DELETE FROM cabanas WHERE id=? ";
-    private static final String GET_ALL_SQL = "SELECT * FROM cabanas ORDER BY ASC etiqueta";
+    private static final String GET_ALL_SQL = "SELECT * FROM cabanas";
+    //"SELECT * FROM cabanas ORDER BY ASC etiqueta";
     private static final String CHECK_SQL = "SELECT * FROM cabanas WHERE etiqueta=? ";
     private static final String UPDATE_SQL = "UPDATE cabanas SET etiqueta=? ,capacidad=?  WHERE id=?";
     
@@ -143,13 +144,12 @@ public class CabinsDAO implements DAO {
     }
 
     @Override
-    public void delete(Object cabin) {
-        Cabin cabinLoc = (Cabin)cabin;
-           
+    public void delete(String id) {
+        
         try{
             connection=this.connect();
             ps = this.connection.prepareStatement(DELETE_SQL);
-            ps.setString(1,cabinLoc.getId());
+            ps.setString(1,id);
             ps.executeUpdate();
         
         }catch(SQLException e){

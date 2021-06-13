@@ -138,11 +138,6 @@ public class MainWindow extends javax.swing.JFrame{
         tablaCabanas.setRowMargin(4);
         tablaCabanas.getTableHeader().setReorderingAllowed(false);
         ListCabanas.setViewportView(tablaCabanas);
-        if (tablaCabanas.getColumnModel().getColumnCount() > 0) {
-            tablaCabanas.getColumnModel().getColumn(0).setMinWidth(50);
-            tablaCabanas.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tablaCabanas.getColumnModel().getColumn(0).setMaxWidth(3050);
-        }
 
         ListPanel.add(ListCabanas, "card2");
 
@@ -169,18 +164,12 @@ public class MainWindow extends javax.swing.JFrame{
             tablaReservas.getColumnModel().getColumn(0).setMinWidth(50);
             tablaReservas.getColumnModel().getColumn(0).setPreferredWidth(50);
             tablaReservas.getColumnModel().getColumn(0).setMaxWidth(3050);
-            tablaReservas.getColumnModel().getColumn(3).setHeaderValue("Mail");
             tablaReservas.getColumnModel().getColumn(4).setMinWidth(60);
             tablaReservas.getColumnModel().getColumn(4).setPreferredWidth(60);
-            tablaReservas.getColumnModel().getColumn(4).setHeaderValue("Cant Inq");
-            tablaReservas.getColumnModel().getColumn(5).setHeaderValue("Cabaña");
             tablaReservas.getColumnModel().getColumn(6).setPreferredWidth(60);
-            tablaReservas.getColumnModel().getColumn(6).setHeaderValue("Desde");
             tablaReservas.getColumnModel().getColumn(7).setPreferredWidth(50);
-            tablaReservas.getColumnModel().getColumn(7).setHeaderValue("Hasta");
             tablaReservas.getColumnModel().getColumn(8).setMinWidth(50);
             tablaReservas.getColumnModel().getColumn(8).setPreferredWidth(50);
-            tablaReservas.getColumnModel().getColumn(8).setHeaderValue("Costo");
         }
 
         ListPanel.add(ListReservas, "card2");
@@ -194,6 +183,11 @@ public class MainWindow extends javax.swing.JFrame{
         CabinInput.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingresar Datos"));
 
         txtEtiqueta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtEtiqueta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEtiquetaActionPerformed(evt);
+            }
+        });
 
         txtCapacidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -258,8 +252,20 @@ public class MainWindow extends javax.swing.JFrame{
         jLabel18.setText("DESDE:");
 
         txtDesde.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtDesde.setText("DD-MM-YYYY");
+        txtDesde.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDesdeMouseClicked(evt);
+            }
+        });
+        txtDesde.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDesdeActionPerformed(evt);
+            }
+        });
 
         txtHasta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtHasta.setText("DD-MM-YYYY");
 
         jLabel19.setText("HASTA:");
 
@@ -517,6 +523,18 @@ public class MainWindow extends javax.swing.JFrame{
     private void agregarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_agregarButtonActionPerformed
+
+    private void txtEtiquetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEtiquetaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEtiquetaActionPerformed
+
+    private void txtDesdeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDesdeMouseClicked
+        
+    }//GEN-LAST:event_txtDesdeMouseClicked
+
+    private void txtDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesdeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDesdeActionPerformed
 
     public static void main(String args[]) {
        MainWindow v=new MainWindow();
