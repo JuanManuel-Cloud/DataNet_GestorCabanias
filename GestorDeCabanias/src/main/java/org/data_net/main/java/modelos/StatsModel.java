@@ -3,17 +3,17 @@ package org.data_net.main.java.modelos;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.data_net.main.java.interfaces.dataObserver;
-import org.data_net.main.java.interfaces.dataSubject;
+import org.data_net.main.java.interfaces.DataSubjects;
+import org.data_net.main.java.interfaces.DataObservers;
 
 
-public class StatsModel implements dataObserver {
+public class StatsModel implements DataObservers {
 
-    private dataSubject mainController;
+    private DataSubjects mainController;
     private int capMaxima;
     private int capActual;
     
-    public StatsModel(dataSubject mainController){
+    public StatsModel(DataSubjects mainController){
         this.mainController=mainController;
         mainController.registerObserver(this);
         capMaxima=0;
