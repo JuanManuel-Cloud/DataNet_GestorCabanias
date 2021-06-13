@@ -11,10 +11,10 @@ import org.data_net.main.java.interfaces.DAO;
 import org.data_net.main.java.modelos.base_de_datos.dao.CabinsDAO;
 import org.data_net.main.java.modelos.base_de_datos.dao.ReservesDAO;
 import org.data_net.main.java.vistas.MainWindow;
-import org.data_net.main.java.interfaces.DataSubject;
-import org.data_net.main.java.interfaces.DataObserver;
+import org.data_net.main.java.interfaces.DataSubjects;
+import org.data_net.main.java.interfaces.DataObservers;
 
-public class MainController implements ActionListener, DataSubject {
+public class MainController implements ActionListener, DataSubjects {
 
     private ArrayList observers;
     MainWindow vista = new MainWindow();
@@ -131,12 +131,12 @@ public class MainController implements ActionListener, DataSubject {
     }
 
     @Override
-    public void registerObserver(DataObserver o) {
+    public void registerObserver(DataObservers o) {
         observers.add(o);
     }
 
     @Override
-    public void removeObserver(DataObserver o) {
+    public void removeObserver(DataObservers o) {
         int i = observers.indexOf(o);
         if (i >= 0) {
             observers.remove(i);
@@ -146,7 +146,7 @@ public class MainController implements ActionListener, DataSubject {
     @Override
     public void notifyObservers(List lista) {
         for (int i = 0; i < observers.size(); i++) {
-            DataObserver observer = (DataObserver) observers.get(i);
+            DataObservers observer = (DataObservers) observers.get(i);
             observer.update(lista);
         }
     }
