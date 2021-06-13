@@ -58,10 +58,27 @@ public class MainWindow extends javax.swing.JFrame{
         editarButton = new javax.swing.JButton();
         nuevoButton = new javax.swing.JButton();
         StatsPanel = new javax.swing.JPanel();
+        NumRep = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        percLabel = new javax.swing.JLabel();
+        ocCabLabel = new javax.swing.JLabel();
+        disCabLabel = new javax.swing.JLabel();
+        nInqLabel = new javax.swing.JLabel();
+        GraphRep = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jLabel6 = new javax.swing.JLabel();
+        jProgressBar2 = new javax.swing.JProgressBar();
         LeftPanel = new javax.swing.JPanel();
         reservasButton = new javax.swing.JButton();
         cabanasButton = new javax.swing.JButton();
         logo = new javax.swing.JLabel();
+        ButtonPanel = new javax.swing.JPanel();
+        verTxtButton = new javax.swing.JRadioButton();
+        verGraphButton = new javax.swing.JRadioButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -407,7 +424,7 @@ public class MainWindow extends javax.swing.JFrame{
             .addGroup(DataPanelLayout.createSequentialGroup()
                 .addGap(415, 415, 415)
                 .addComponent(OpsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
             .addGroup(DataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(DataPanelLayout.createSequentialGroup()
                     .addContainerGap()
@@ -421,7 +438,7 @@ public class MainWindow extends javax.swing.JFrame{
                 .addContainerGap())
             .addGroup(DataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(DataPanelLayout.createSequentialGroup()
-                    .addComponent(InputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                    .addComponent(InputPanel)
                     .addContainerGap()))
         );
 
@@ -430,17 +447,131 @@ public class MainWindow extends javax.swing.JFrame{
         nuevoButton.setText("NUEVO");
 
         StatsPanel.setBackground(new java.awt.Color(138, 186, 174));
+        StatsPanel.setLayout(new java.awt.CardLayout());
 
-        javax.swing.GroupLayout StatsPanelLayout = new javax.swing.GroupLayout(StatsPanel);
-        StatsPanel.setLayout(StatsPanelLayout);
-        StatsPanelLayout.setHorizontalGroup(
-            StatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 180, Short.MAX_VALUE)
+        NumRep.setBackground(new java.awt.Color(138, 186, 174));
+        NumRep.setMaximumSize(new java.awt.Dimension(191, 600));
+        NumRep.setMinimumSize(new java.awt.Dimension(191, 600));
+        NumRep.setPreferredSize(new java.awt.Dimension(191, 600));
+
+        jLabel1.setText("Cabañas Ocupadas");
+
+        jLabel2.setText("Porcentaje de Ocupacion");
+
+        jLabel3.setText("Cabañas Disponibles");
+
+        jLabel4.setText("Numero de Inquilinos");
+
+        percLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        percLabel.setText("jLabel5");
+
+        ocCabLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ocCabLabel.setText("jLabel5");
+
+        disCabLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        disCabLabel.setText("jLabel5");
+
+        nInqLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        nInqLabel.setText("jLabel5");
+
+        javax.swing.GroupLayout NumRepLayout = new javax.swing.GroupLayout(NumRep);
+        NumRep.setLayout(NumRepLayout);
+        NumRepLayout.setHorizontalGroup(
+            NumRepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NumRepLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(32, 32, 32))
+            .addGroup(NumRepLayout.createSequentialGroup()
+                .addGroup(NumRepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(NumRepLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(percLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(NumRepLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(NumRepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(NumRepLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(nInqLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(NumRepLayout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(ocCabLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(NumRepLayout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(disCabLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46))
         );
-        StatsPanelLayout.setVerticalGroup(
-            StatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        NumRepLayout.setVerticalGroup(
+            NumRepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NumRepLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(ocCabLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(disCabLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(nInqLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(percLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        StatsPanel.add(NumRep, "card2");
+
+        GraphRep.setBackground(new java.awt.Color(138, 186, 174));
+
+        jLabel5.setText("Disponibilidad de Cabañas");
+
+        jLabel6.setText("Porcentaje de Ocupación");
+
+        javax.swing.GroupLayout GraphRepLayout = new javax.swing.GroupLayout(GraphRep);
+        GraphRep.setLayout(GraphRepLayout);
+        GraphRepLayout.setHorizontalGroup(
+            GraphRepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GraphRepLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(GraphRepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(GraphRepLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(GraphRepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))))
+                .addContainerGap(36, Short.MAX_VALUE))
+            .addGroup(GraphRepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GraphRepLayout.createSequentialGroup()
+                    .addContainerGap(39, Short.MAX_VALUE)
+                    .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(37, 37, 37)))
+        );
+        GraphRepLayout.setVerticalGroup(
+            GraphRepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GraphRepLayout.createSequentialGroup()
+                .addGap(155, 155, 155)
+                .addComponent(jLabel5)
+                .addGap(213, 213, 213)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(233, Short.MAX_VALUE))
+            .addGroup(GraphRepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(GraphRepLayout.createSequentialGroup()
+                    .addGap(175, 175, 175)
+                    .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(460, Short.MAX_VALUE)))
+        );
+
+        StatsPanel.add(GraphRep, "card3");
 
         LeftPanel.setBackground(new java.awt.Color(0, 106, 78));
 
@@ -462,16 +593,12 @@ public class MainWindow extends javax.swing.JFrame{
         LeftPanelLayout.setHorizontalGroup(
             LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LeftPanelLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addGroup(LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LeftPanelLayout.createSequentialGroup()
-                        .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LeftPanelLayout.createSequentialGroup()
-                        .addGroup(LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(reservasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cabanasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39))))
+                    .addComponent(reservasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cabanasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
         );
         LeftPanelLayout.setVerticalGroup(
             LeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -483,6 +610,45 @@ public class MainWindow extends javax.swing.JFrame{
                 .addGap(41, 41, 41)
                 .addComponent(reservasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82))
+        );
+
+        ButtonPanel.setBackground(new java.awt.Color(138, 186, 174));
+
+        verTxtButton.setBackground(new java.awt.Color(138, 186, 174));
+        verTxtButton.setText("Ver Texto");
+        verTxtButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verTxtButtonActionPerformed(evt);
+            }
+        });
+
+        verGraphButton.setBackground(new java.awt.Color(138, 186, 174));
+        verGraphButton.setText("VerGráfico");
+        verGraphButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verGraphButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ButtonPanelLayout = new javax.swing.GroupLayout(ButtonPanel);
+        ButtonPanel.setLayout(ButtonPanelLayout);
+        ButtonPanelLayout.setHorizontalGroup(
+            ButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ButtonPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(verTxtButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(verGraphButton)
+                .addContainerGap())
+        );
+        ButtonPanelLayout.setVerticalGroup(
+            ButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonPanelLayout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addGroup(ButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(verTxtButton)
+                    .addComponent(verGraphButton))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -502,16 +668,16 @@ public class MainWindow extends javax.swing.JFrame{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nuevoButton)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(StatsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(StatsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(StatsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(LeftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(DataPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -520,7 +686,11 @@ public class MainWindow extends javax.swing.JFrame{
                             .addComponent(editarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nuevoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)))
+                        .addComponent(ListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(StatsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -551,6 +721,14 @@ public class MainWindow extends javax.swing.JFrame{
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDesdeActionPerformed
 
+    private void verTxtButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verTxtButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_verTxtButtonActionPerformed
+
+    private void verGraphButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verGraphButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_verGraphButtonActionPerformed
+
     public static void main(String args[]) {
        MainWindow v=new MainWindow();
        MainController con=new MainController(v);
@@ -561,13 +739,16 @@ public class MainWindow extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ButtonPanel;
     public javax.swing.JPanel CabinInput;
     private javax.swing.JPanel DataPanel;
+    private javax.swing.JPanel GraphRep;
     public javax.swing.JLayeredPane InputPanel;
     private javax.swing.JPanel LeftPanel;
     public javax.swing.JScrollPane ListCabanas;
     public javax.swing.JPanel ListPanel;
     public javax.swing.JScrollPane ListReservas;
+    private javax.swing.JPanel NumRep;
     private javax.swing.JPanel OpsPanel;
     public javax.swing.JPanel ReserveInput;
     private javax.swing.JPanel StatsPanel;
@@ -575,7 +756,9 @@ public class MainWindow extends javax.swing.JFrame{
     public javax.swing.JButton agregarButton;
     public javax.swing.JButton borrarButton;
     public javax.swing.JButton cabanasButton;
+    private javax.swing.JLabel disCabLabel;
     public javax.swing.JButton editarButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -584,8 +767,15 @@ public class MainWindow extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -596,7 +786,10 @@ public class MainWindow extends javax.swing.JFrame{
     private javax.swing.JTable jTable4;
     public javax.swing.JButton listarButton;
     private javax.swing.JLabel logo;
+    private javax.swing.JLabel nInqLabel;
     public javax.swing.JButton nuevoButton;
+    private javax.swing.JLabel ocCabLabel;
+    private javax.swing.JLabel percLabel;
     public javax.swing.JButton reservasButton;
     public javax.swing.JTable tablaCabanas;
     public javax.swing.JTable tablaReservas;
@@ -610,5 +803,7 @@ public class MainWindow extends javax.swing.JFrame{
     public javax.swing.JTextField txtInquilino;
     public javax.swing.JTextField txtMail;
     public javax.swing.JTextField txtTelefono;
+    private javax.swing.JRadioButton verGraphButton;
+    private javax.swing.JRadioButton verTxtButton;
     // End of variables declaration//GEN-END:variables
 }
