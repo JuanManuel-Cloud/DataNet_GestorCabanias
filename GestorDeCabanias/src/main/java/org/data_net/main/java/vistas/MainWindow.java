@@ -7,8 +7,10 @@ import javax.swing.ImageIcon;
 import org.data_net.main.java.controladores.GraphRep;
 import org.data_net.main.java.controladores.MainController;
 import org.data_net.main.java.controladores.NumRep;
+import org.data_net.main.java.controladores.ReservesAdministrator;
 import org.data_net.main.java.controladores.StatsController;
 import org.data_net.main.java.modelos.StatsModel;
+import org.data_net.main.java.modelos.base_de_datos.dao.ReservesDAO;
 
 public class MainWindow extends javax.swing.JFrame{
     public MainWindow() {
@@ -57,7 +59,6 @@ public class MainWindow extends javax.swing.JFrame{
         jLabel20 = new javax.swing.JLabel();
         OpsPanel = new javax.swing.JPanel();
         agregarButton = new javax.swing.JButton();
-        listarButton = new javax.swing.JButton();
         borrarButton = new javax.swing.JButton();
         actualizarButton = new javax.swing.JButton();
         editarButton = new javax.swing.JButton();
@@ -343,13 +344,6 @@ public class MainWindow extends javax.swing.JFrame{
             }
         });
 
-        listarButton.setText("LISTAR");
-        listarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listarButtonActionPerformed(evt);
-            }
-        });
-
         borrarButton.setText("BORRAR");
 
         actualizarButton.setText("ACTUALIZAR");
@@ -361,7 +355,6 @@ public class MainWindow extends javax.swing.JFrame{
             .addGroup(OpsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(OpsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(listarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(borrarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(agregarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(OpsPanelLayout.createSequentialGroup()
@@ -375,12 +368,10 @@ public class MainWindow extends javax.swing.JFrame{
                 .addContainerGap()
                 .addComponent(agregarButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(listarButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(actualizarButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(borrarButton)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout DataPanelLayout = new javax.swing.GroupLayout(DataPanel);
@@ -471,49 +462,54 @@ public class MainWindow extends javax.swing.JFrame{
 
         jLabel4.setText("Porcentaje de Ocupación");
 
-        totCabLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        totCabLabel.setText("jLabel5");
+        totCabLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        totCabLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        totCabLabel.setText("-");
+        totCabLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        cantInqLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cantInqLabel.setText("jLabel5");
+        cantInqLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        cantInqLabel.setText("-");
+        cantInqLabel.setFocusable(false);
+        cantInqLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        porcOcLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        porcOcLabel.setText("jLabel5");
+        porcOcLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        porcOcLabel.setText("-");
+        porcOcLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout NumRepLayout = new javax.swing.GroupLayout(NumRep);
         NumRep.setLayout(NumRepLayout);
         NumRepLayout.setHorizontalGroup(
             NumRepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NumRepLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
                 .addGroup(NumRepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(NumRepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel4)
-                        .addGroup(NumRepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(NumRepLayout.createSequentialGroup()
-                                .addGap(100, 100, 100)
-                                .addComponent(totCabLabel))
-                            .addGroup(NumRepLayout.createSequentialGroup()
-                                .addGap(101, 101, 101)
-                                .addComponent(cantInqLabel))
-                            .addGroup(NumRepLayout.createSequentialGroup()
-                                .addGap(102, 102, 102)
-                                .addComponent(porcOcLabel))
-                            .addGroup(NumRepLayout.createSequentialGroup()
-                                .addGap(75, 75, 75)
-                                .addComponent(jLabel3))))
+                        .addGroup(NumRepLayout.createSequentialGroup()
+                            .addGap(11, 11, 11)
+                            .addComponent(jLabel3)))
                     .addGroup(NumRepLayout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(jLabel2)))
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel2))
+                    .addGroup(NumRepLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(totCabLabel))
+                    .addGroup(NumRepLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(cantInqLabel))
+                    .addGroup(NumRepLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(porcOcLabel)))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
         NumRepLayout.setVerticalGroup(
             NumRepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NumRepLayout.createSequentialGroup()
-                .addGap(204, 204, 204)
+                .addGap(162, 162, 162)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(totCabLabel)
-                .addGap(82, 82, 82)
+                .addGap(77, 77, 77)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cantInqLabel)
@@ -521,7 +517,7 @@ public class MainWindow extends javax.swing.JFrame{
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(porcOcLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         StatsPanel.add(NumRep, "card2");
@@ -562,6 +558,7 @@ public class MainWindow extends javax.swing.JFrame{
 
         verTxtButton.setBackground(new java.awt.Color(138, 186, 174));
         verTxtButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        verTxtButton.setSelected(true);
         verTxtButton.setText("Ver Texto");
         verTxtButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -645,10 +642,6 @@ public class MainWindow extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void listarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_listarButtonActionPerformed
-
     private void cabanasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cabanasButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cabanasButtonActionPerformed
@@ -682,6 +675,10 @@ public class MainWindow extends javax.swing.JFrame{
        MainController con=new MainController(v);
        StatsModel statsModel=new StatsModel(con);
        StatsController stCon=new StatsController(v,statsModel);
+       con.getAll();
+       con.setTipoDAO(new ReservesDAO());
+       con.setAdministrator(new ReservesAdministrator(v));
+       con.getAll();
        v.setVisible(true);
        v.setLocationRelativeTo(null);
     }
@@ -762,7 +759,6 @@ public class MainWindow extends javax.swing.JFrame{
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
-    public javax.swing.JButton listarButton;
     private javax.swing.JLabel logo;
     public javax.swing.JButton nuevoButton;
     public javax.swing.JProgressBar porcOcBar;

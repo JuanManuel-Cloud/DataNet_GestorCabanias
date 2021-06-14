@@ -18,7 +18,7 @@ public class NumRep implements StatsObserver {
     @Override
     public void update(int capMaxima, int capActual, int cantCabanas) {
         vista.cantInqLabel.setText(Integer.toString(capActual));
-        vista.porcOcLabel.setText(Integer.toString(capActual*100/capMaxima));
+        vista.porcOcLabel.setText(Integer.toString(capActual*100/capMaxima)+" %");
         vista.totCabLabel.setText(Integer.toString(cantCabanas));
     }
     

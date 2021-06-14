@@ -21,7 +21,7 @@ public class StatsModel implements DataObservers,StatsSubject {
     
     public StatsModel(DataSubjects mainController){
         observers = new ArrayList();
-        this.mainController=mainController;
+        this.mainController = mainController;
         mainController.registerObserver(this);
         
         capMaxima=0;
