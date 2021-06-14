@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.data_net.main.java.interfaces.Administrator;
+import org.data_net.main.java.modelos.Cabin;
 import org.data_net.main.java.modelos.Reserve;
 import org.data_net.main.java.vistas.MainWindow;
 
@@ -20,17 +21,51 @@ public class ReservesAdministrator implements Administrator  {
     
     @Override
     public Object insert() {
-        String inquilino = mainWindow.txtInquilino.getText();
-        String telefono = mainWindow.txtTelefono.getText();
-        String mail = mainWindow.txtMail.getText();
-        String cantInq = mainWindow.txtCantInq.getText();
+        try{
         String cabana = mainWindow.txtCabana.getText();
         String desde = mainWindow.txtDesde.getText();
         String hasta = mainWindow.txtHasta.getText();
+        String inquilino = mainWindow.txtInquilino.getText();
+        String cantInq = mainWindow.txtCantInq.getText();
         String costo = mainWindow.txtCosto.getText();
-    
-        return new Reserve(inquilino,telefono,mail,Integer.parseInt(cantInq),cabana,desde,hasta,Integer.parseInt(costo));
-    }
+        String telefono = mainWindow.txtTelefono.getText().replaceAll("[\\-\\+]", "");
+        String mail = mainWindow.txtMail.getText();
+        
+       //chequeo posibles nulls 
+        checkNull(inquilino,telefono,mail,cantInq,cabana,desde,hasta,costo);
+
+        //chequeo posibles NumberFormatException
+        long tel=java.lang.Long.parseLong(telefono);
+        int cant_inq=Integer.parseInt(cantInq);
+        int cost=Integer.parseInt(costo);
+        int desde_val=Integer.parseInt(desde.replaceAll("[\\-\\+]", ""));
+        int hasta_val=Integer.parseInt(hasta.replaceAll("[\\-\\+]", ""));
+        
+        //chequeos de telefono
+        checkTel(tel);
+        
+        //chequea intiquilinos
+        //checkCantInq(cant_inq);
+        
+        //chequeo las fechas
+         checkFecha(desde_val,hasta_val);
+        
+        Reserve reserve= new Reserve(inquilino,telefono,mail,cant_inq,cabana,desde,hasta,cost);
+        
+        return reserve;
+        
+        }catch(NumberFormatException e ){ 
+          JOptionPane.showMessageDialog(mainWindow,"Formato Invalido" );
+           return null;
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(mainWindow,e.getMessage());
+            return null;
+        }catch(IllegalArgumentException e){
+            JOptionPane.showMessageDialog(mainWindow,e.getMessage() );
+            return null;
+        }
+        
+   }
 
     
     @Override
@@ -70,7 +105,7 @@ public class ReservesAdministrator implements Administrator  {
     @Override
     public Object update() {    
         ArrayList<String> valor = obtenerValores();
-        Reserve reserve = new Reserve (valor.get(1),valor.get(2),valor.get(3),Integer.parseInt(valor.get(4)),valor.get(5),valor.get(6),valor.get(7),Integer.parseInt(valor.get(1)));
+        Reserve reserve = new Reserve (valor.get(1),valor.get(2),valor.get(3),Integer.parseInt(valor.get(4)),valor.get(5),valor.get(6),valor.get(7),Integer.parseInt(valor.get(8)));
         reserve.setId(valor.get(0));
         return reserve; 
     }
@@ -92,6 +127,45 @@ public class ReservesAdministrator implements Administrator  {
         mainWindow.txtCosto.setText("");
         mainWindow.txtEtiqueta.requestFocus();
     }
+
+    private boolean checkTel(long tel) {
+      
+        if(tel>=1100000000){
+          if(tel<= 9999999999.0){
+          return true;}}
+       throw new IllegalArgumentException("Campo: TELEFONO invalido. Ingrese un nuemero sin 15 y sin +54");
+    }
+
+    private void checkNull(String inquilino,String telefono,String mail,String cantInq,String cabana,String desde,String hasta,String costo) {
+      if( cabana.isEmpty() 
+       || desde.isEmpty() 
+       || hasta.isEmpty()
+       || inquilino.isEmpty() 
+       || cantInq.isEmpty() 
+       || costo.isEmpty() 
+       || telefono.isEmpty()
+       || mail.isEmpty()){
+          throw new NullPointerException("Campos Vacios" );
+      } 
+      
+        
+   }
+
+    private void checkCantInq(int cant_inq, Cabin cabin) {
+     if(cabin.getCapacidad()<cant_inq){
+        throw new IllegalArgumentException("La cantidad de Inquilinos Supera la Capacidad de la Cabaña");
+     }
+    }
+    
+    private boolean checkFecha(int desde, int hasta) {
+       if(desde<=hasta){
+           return true;
+           //falta chequear que la cabaña no este reservada, ver DAO!!!
+      }
+      throw new IllegalArgumentException("La fecha Ingresada no es correcta");
+      
+    }
+    
     
     @Override
     public void limpiarTabla() {
