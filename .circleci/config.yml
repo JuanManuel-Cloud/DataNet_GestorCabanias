@@ -20,9 +20,9 @@ jobs:
           command: mvn -f GestorDeCabanias/pom.xml -B -DskipTests clean package
 
       # Then run your tests!
-      - run:
-          name: Test
-          command: mvn -f GestorDeCabanias/pom.xml test
+      #- run:
+          #name: Test
+          #command: mvn -f GestorDeCabanias/pom.xml test
 
 workflows:
   # Below is the definition of your workflow.
