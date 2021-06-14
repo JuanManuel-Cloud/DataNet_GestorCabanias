@@ -41,7 +41,7 @@ public class CabinsAdministrator implements Administrator {
     
 
     @Override
-    public String delete() {
+    public String getFila() {
         int fila = mainWindow.getTablaCabana().getSelectedRow();
         if (fila == -1) {
             JOptionPane.showMessageDialog(mainWindow, "Debe Seleccionar una Fila");
@@ -51,10 +51,21 @@ public class CabinsAdministrator implements Administrator {
             return id;
         }
     }
-
+        
     @Override
-    public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Object update() {
+        int fila = mainWindow.getTablaCabana().getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(mainWindow, "Debe Seleccionar una Fila");
+            return "";
+        } else {
+            String etiqueta = mainWindow.txtEtiqueta.getText();
+            String capacidad = mainWindow.txtCapacidad.getText();
+            String id =  mainWindow.getTablaCabana().getValueAt(fila, 0).toString();
+            Cabin cabin = new Cabin (etiqueta,Integer.parseInt(capacidad));
+            cabin.setId(id);
+            return cabin;
+        }
     }
 
     @Override
@@ -76,4 +87,16 @@ public class CabinsAdministrator implements Administrator {
                 i = i - 1;
             }
     }
+
+    @Override
+    public void cargarCampos() {
+        int fila = mainWindow.getTablaCabana().getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(mainWindow, "Debe Seleccionar una Fila");
+        } else {
+        mainWindow.txtEtiqueta.setText(mainWindow.getTablaCabana().getValueAt(fila, 1).toString());
+        mainWindow.txtCapacidad.setText(mainWindow.getTablaCabana().getValueAt(fila, 2).toString());
+        }
+    }
+    
 }

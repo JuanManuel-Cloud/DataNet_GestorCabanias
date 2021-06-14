@@ -56,7 +56,7 @@ public class ReservesAdministrator implements Administrator  {
     }
 
     @Override
-    public String delete() {
+    public String getFila() {
         int fila = mainWindow.getTablaReserva().getSelectedRow();
         if (fila == -1) {
             JOptionPane.showMessageDialog(mainWindow, "Debe Seleccionar una Fila");
@@ -68,8 +68,11 @@ public class ReservesAdministrator implements Administrator  {
     }
 
     @Override
-    public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Object update() {    
+        ArrayList<String> valor = obtenerValores();
+        Reserve reserve = new Reserve (valor.get(1),valor.get(2),valor.get(3),Integer.parseInt(valor.get(4)),valor.get(5),valor.get(6),valor.get(7),Integer.parseInt(valor.get(1)));
+        reserve.setId(valor.get(0));
+        return reserve; 
     }
 
     @Override
@@ -95,6 +98,40 @@ public class ReservesAdministrator implements Administrator  {
         for (int i = 0; i < mainWindow.getTablaReserva().getRowCount(); i++) {
                 modelo.removeRow(i);
                 i = i - 1;
+            }
+    }
+
+    @Override
+    public void cargarCampos() {
+        int fila = mainWindow.getTablaReserva().getSelectedRow();
+    
+        mainWindow.txtInquilino.setText(mainWindow.getTablaReserva().getValueAt(fila, 1).toString());
+        mainWindow.txtTelefono.setText(mainWindow.getTablaReserva().getValueAt(fila, 2).toString());
+        mainWindow.txtMail.setText(mainWindow.getTablaReserva().getValueAt(fila, 3).toString());
+        mainWindow.txtCantInq.setText(mainWindow.getTablaReserva().getValueAt(fila, 4).toString());
+        mainWindow.txtCabana.setText(mainWindow.getTablaReserva().getValueAt(fila, 5).toString());
+        mainWindow.txtDesde.setText(mainWindow.getTablaReserva().getValueAt(fila, 6).toString());
+        mainWindow.txtHasta.setText(mainWindow.getTablaReserva().getValueAt(fila, 7).toString());
+        mainWindow.txtCosto.setText(mainWindow.getTablaReserva().getValueAt(fila, 8).toString());
+    }
+    
+    public ArrayList<String> obtenerValores() {
+            ArrayList<String> valores = new ArrayList();
+            int fila = mainWindow.getTablaReserva().getSelectedRow();
+            if (fila == -1) {
+            JOptionPane.showMessageDialog(mainWindow, "Debe Seleccionar una Fila");
+            return new ArrayList<String>();
+            } else {
+                valores.add(mainWindow.getTablaReserva().getValueAt(fila, 0).toString());
+                valores.add(mainWindow.txtInquilino.getText());
+                valores.add(mainWindow.txtTelefono.getText());
+                valores.add(mainWindow.txtMail.getText());
+                valores.add(mainWindow.txtCantInq.getText());
+                valores.add(mainWindow.txtCabana.getText());
+                valores.add(mainWindow.txtDesde.getText());
+                valores.add(mainWindow.txtHasta.getText());
+                valores.add(mainWindow.txtCosto.getText());
+                return valores;
             }
     }
 }
