@@ -28,7 +28,6 @@ public class MainController implements ActionListener, DataSubjects {
     public MainController(MainWindow v) {
         observers = new ArrayList();
         this.vista = v;
-        this.vista.listarButton.addActionListener(this);
         this.vista.agregarButton.addActionListener(this);
         this.vista.editarButton.addActionListener(this);
         this.vista.borrarButton.addActionListener(this);
@@ -36,7 +35,6 @@ public class MainController implements ActionListener, DataSubjects {
         this.vista.nuevoButton.addActionListener(this);
         this.vista.cabanasButton.addActionListener(this);
         this.vista.reservasButton.addActionListener(this);
-
         dao = new CabinsDAO();
         administrator = new CabinsAdministrator(vista);
     }
@@ -71,7 +69,7 @@ public class MainController implements ActionListener, DataSubjects {
 
             dao.add(administrator.insert());
             administrator.limpiar();
-
+            getAll();
         }
 
         if (e.getSource() == vista.borrarButton) {
@@ -98,7 +96,7 @@ public class MainController implements ActionListener, DataSubjects {
     }
 
     //Metodo para mostrar en tabla  //todo revisar no funciona la parte grafica, dao  trae la lista con los objetos correctamente
-    private void getAll() {
+    public void getAll() {
         List<Object> lista;
         lista = dao.getAll();
         administrator.getAll(lista);
@@ -106,12 +104,12 @@ public class MainController implements ActionListener, DataSubjects {
     }
 
     //Seleccion de strategy DAO
-    private void setTipoDAO(DAO dao) {
+    public void setTipoDAO(DAO dao) {
         this.dao = dao;
     }
 
     //Seleccion de strategy Administrator
-    private void setAdministrator(Administrator administrator) {
+    public void setAdministrator(Administrator administrator) {
         this.administrator = administrator;
     }
 
