@@ -105,7 +105,7 @@ public class ReservesAdministrator implements Administrator  {
     @Override
     public Object update() {    
         ArrayList<String> valor = obtenerValores();
-        Reserve reserve = new Reserve (valor.get(1),valor.get(2),valor.get(3),Integer.parseInt(valor.get(4)),valor.get(5),valor.get(6),valor.get(7),Integer.parseInt(valor.get(1)));
+        Reserve reserve = new Reserve (valor.get(1),valor.get(2),valor.get(3),Integer.parseInt(valor.get(4)),valor.get(5),valor.get(6),valor.get(7),Integer.parseInt(valor.get(8)));
         reserve.setId(valor.get(0));
         return reserve; 
     }

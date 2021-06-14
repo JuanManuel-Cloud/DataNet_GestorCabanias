@@ -2,14 +2,12 @@ package org.data_net.main.java.vistas;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import org.data_net.main.java.controladores.GraphRep;
+import org.data_net.main.java.controladores.CabinsAdministrator;
 import org.data_net.main.java.controladores.MainController;
-import org.data_net.main.java.controladores.NumRep;
 import org.data_net.main.java.controladores.ReservesAdministrator;
 import org.data_net.main.java.controladores.StatsController;
 import org.data_net.main.java.modelos.StatsModel;
+import org.data_net.main.java.modelos.base_de_datos.dao.CabinsDAO;
 import org.data_net.main.java.modelos.base_de_datos.dao.ReservesDAO;
 
 public class MainWindow extends javax.swing.JFrame{
@@ -679,6 +677,8 @@ public class MainWindow extends javax.swing.JFrame{
        con.setTipoDAO(new ReservesDAO());
        con.setAdministrator(new ReservesAdministrator(v));
        con.getAll();
+       con.setTipoDAO(new CabinsDAO());
+       con.setAdministrator(new CabinsAdministrator(v));
        v.setVisible(true);
        v.setLocationRelativeTo(null);
     }
