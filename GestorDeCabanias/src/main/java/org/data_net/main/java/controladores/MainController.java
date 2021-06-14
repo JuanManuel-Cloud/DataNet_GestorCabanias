@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.Object;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.data_net.main.java.interfaces.Administrator;
@@ -74,11 +75,25 @@ public class MainController implements ActionListener, DataSubjects {
         }
 
         if (e.getSource() == vista.borrarButton) {
-            String id = administrator.delete();
+            String id = administrator.getFila();
             if (!id.equals("")) {
                 dao.delete(id);
                 JOptionPane.showMessageDialog(vista, "Se ha eliminado correctamente");
             }
+        }
+        
+        if(e.getSource() == vista.editarButton) {
+            administrator.cargarCampos();
+        }
+        
+        if(e.getSource() == vista.actualizarButton) {
+            dao.update(administrator.update());
+            administrator.limpiar();
+            getAll();
+        }
+        
+        if(e.getSource() == vista.nuevoButton) {
+            administrator.limpiar();
         }
     }
 
