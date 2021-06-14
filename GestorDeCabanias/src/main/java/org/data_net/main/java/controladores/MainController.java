@@ -66,10 +66,12 @@ public class MainController implements ActionListener, DataSubjects {
         }
         if (e.getSource() == vista.agregarButton) {
             System.out.println("Se apreto boton Agregar");
-
-            dao.add(administrator.insert());
-            administrator.limpiar();
-            getAll();
+            Object obj=administrator.insert();
+            if(obj!=null){
+                dao.add(obj);
+                administrator.limpiar();
+                getAll();
+            }
         }
 
         if (e.getSource() == vista.borrarButton) {
