@@ -87,9 +87,11 @@ public class MainController implements ActionListener {
         if (e.getSource() == vista.agregarButton) {
             System.out.println("Se apreto boton Agregar");
             //List<Object> addList=new ArrayList();
-            dao.add(administrator.insert());
-            administrator.limpiar();
-     
+            Object obj=administrator.insert();
+            if(obj!=null){
+                dao.add(obj);
+                administrator.limpiar();
+            }
         }
         
         if (e.getSource() == vista.borrarButton) {

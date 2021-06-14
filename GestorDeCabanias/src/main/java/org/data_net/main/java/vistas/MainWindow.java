@@ -224,6 +224,11 @@ public class MainWindow extends javax.swing.JFrame{
                 .addContainerGap(223, Short.MAX_VALUE))
         );
 
+        txtEtiqueta.getAccessibleContext().setAccessibleName("txtEtiqueta");
+        txtEtiqueta.getAccessibleContext().setAccessibleDescription("");
+        txtCapacidad.getAccessibleContext().setAccessibleName("txtCapacidad");
+        txtCapacidad.getAccessibleContext().setAccessibleDescription("");
+
         InputPanel.add(CabinInput, "card2");
 
         ReserveInput.setBackground(new java.awt.Color(92, 160, 142));
@@ -232,6 +237,11 @@ public class MainWindow extends javax.swing.JFrame{
         txtInquilino.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         txtTelefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonoActionPerformed(evt);
+            }
+        });
 
         txtMail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -343,6 +353,9 @@ public class MainWindow extends javax.swing.JFrame{
                     .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        txtTelefono.getAccessibleContext().setAccessibleName("txtTelefono");
+        txtTelefono.getAccessibleContext().setAccessibleDescription("");
 
         InputPanel.add(ReserveInput, "card2");
 
@@ -535,6 +548,10 @@ public class MainWindow extends javax.swing.JFrame{
     private void txtDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesdeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDesdeActionPerformed
+
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoActionPerformed
 
     public static void main(String args[]) {
        MainWindow v=new MainWindow();

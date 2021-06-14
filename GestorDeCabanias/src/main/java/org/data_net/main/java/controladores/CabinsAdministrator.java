@@ -21,9 +21,21 @@ public class CabinsAdministrator implements Administrator {
     
     @Override
     public Object insert() {
-        String etiqueta = mainWindow.txtEtiqueta.getText();
-        String capacidad = mainWindow.txtCapacidad.getText();
-        return new Cabin(etiqueta,Integer.parseInt(capacidad));
+        try{
+            String e=mainWindow.txtEtiqueta.getText();
+            String c=  mainWindow.txtCapacidad.getText();
+            String etiqueta = e;
+            int capacidad =Integer.parseInt(c);
+            if(!e.isEmpty() && !c.isEmpty()){
+                return new Cabin(etiqueta,capacidad); 
+            }
+            else{ 
+               JOptionPane.showMessageDialog(mainWindow,"Complete los campos requeridos" );
+                return null;}
+       
+        }catch(NumberFormatException nfe){ 
+          JOptionPane.showMessageDialog(mainWindow,"Ingrese un valor válido" );
+            return null;}
     }
 
     @Override
@@ -71,5 +83,9 @@ public class CabinsAdministrator implements Administrator {
         mainWindow.txtEtiqueta.setText("");
         mainWindow.txtCapacidad.setText("");
         mainWindow.txtEtiqueta.requestFocus();
+    }
+
+    MainWindow getMainWindow() {
+    return mainWindow;
     }
 }

@@ -16,17 +16,47 @@ public class ReservesAdministrator implements Administrator  {
     
     @Override
     public Object insert() {
-        String inquilino = mainWindow.txtInquilino.getText();
-        String telefono = mainWindow.txtTelefono.getText();
-        String mail = mainWindow.txtMail.getText();
-        String cantInq = mainWindow.txtCantInq.getText();
+        try{
         String cabana = mainWindow.txtCabana.getText();
         String desde = mainWindow.txtDesde.getText();
         String hasta = mainWindow.txtHasta.getText();
+        String inquilino = mainWindow.txtInquilino.getText();
+        String cantInq = mainWindow.txtCantInq.getText();
         String costo = mainWindow.txtCosto.getText();
-    
-        return new Reserve(inquilino,telefono,mail,Integer.parseInt(cantInq),cabana,desde,hasta,Integer.parseInt(costo));
-    }
+        String telefono = mainWindow.txtTelefono.getText();
+        String mail = mainWindow.txtMail.getText();
+        
+       //chequeo posibles nulls 
+        checkNull(inquilino,telefono,mail,cantInq,cabana,desde,hasta,costo);
+
+        //chequeo posibles NumberFormatException
+        int tel=Integer.parseInt(telefono);
+        int cant_inq=Integer.parseInt(cantInq);
+        int cost=Integer.parseInt(costo);
+        
+        //chequeos de telefono
+        checkTel(tel);
+        
+        //chequea intiquilinos
+        checkCantInq(cant_inq);
+        
+        
+        Reserve reserve= new Reserve(inquilino,telefono,mail,cant_inq,cabana,desde,hasta,cost);
+        
+        return reserve;
+        
+        }catch(NumberFormatException e ){ 
+          JOptionPane.showMessageDialog(mainWindow,"Formato Invalido" );
+            return null;
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(mainWindow,e.getMessage());
+            return null;
+        }catch(IllegalArgumentException e){
+        JOptionPane.showMessageDialog(mainWindow,e.getMessage() );
+            return null;
+        }
+        
+   }
 
     
     @Override
@@ -86,6 +116,32 @@ public class ReservesAdministrator implements Administrator  {
         mainWindow.txtHasta.setText("");
         mainWindow.txtCosto.setText("");
         mainWindow.txtEtiqueta.requestFocus();
+    }
+
+    private boolean checkTel(int tel) {
+        if(tel>=1100000000){
+             return true;}
+        else{
+            throw new IllegalArgumentException("Campos invalidos");}
+    }
+
+    private void checkNull(String inquilino,String telefono,String mail,String cantInq,String cabana,String desde,String hasta,String costo) {
+      if( cabana.isEmpty() 
+       || desde.isEmpty() 
+       || hasta.isEmpty()
+       || inquilino.isEmpty() 
+       || cantInq.isEmpty() 
+       || costo.isEmpty() 
+       || telefono.isEmpty()
+       || mail.isEmpty()){
+          throw new NullPointerException("Campos Vacios" );
+      } 
+      
+        
+   }
+
+    private void checkCantInq(int cant_inq, Cabin cabin) {
+
     }
     
 }
