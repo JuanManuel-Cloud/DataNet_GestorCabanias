@@ -28,7 +28,7 @@ public class CabinsDAO implements DAO {
         Connection conn = null;
         
         try{
-            conn = DriverManager.getConnection("jdbc:sqlite:./src/main/java/org/data_net/main/java/modelos/base_de_datos/dao/gestorcabanias.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:./gestorcabanias.db");
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
