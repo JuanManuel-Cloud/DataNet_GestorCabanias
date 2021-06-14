@@ -1,24 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.data_net.main.java.controladores;
 
-import java.util.List;
 import org.data_net.main.java.modelos.Cabin;
 import org.data_net.main.java.vistas.MainWindow;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- *
- * @author Julieta
- */
 public class CabinsAdministratorTest {
      private MainWindow mainWindow;
      CabinsAdministrator instance;
@@ -68,7 +57,6 @@ public class CabinsAdministratorTest {
         Object result = instance.insert();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-       
     }
     
       @org.junit.Test
