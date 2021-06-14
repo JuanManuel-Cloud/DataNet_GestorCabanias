@@ -128,19 +128,7 @@ public class ReservesAdministratorTest {
 
   
 
-    /**
-     * Test of check method, of class ReservesAdministrator.
-     */
-    @org.junit.Test
-    public void testCheck() {
-        System.out.println("check");
-        ReservesAdministrator instance = null;
-        Object expResult = null;
-        Object result = instance.check();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("FALTA IMPLEMENTAR");
-    }
+   
 
   
     

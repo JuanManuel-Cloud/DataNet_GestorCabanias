@@ -47,7 +47,7 @@ public class CabinsAdministratorTest {
     /**
      * Test of insert method, of class CabinsAdministrator.
      */
-    @Test
+  @org.junit.Test
     public void testInsert_null() {
         instance.getMainWindow().txtEtiqueta.setText(null);
         instance.getMainWindow().txtCapacidad.setText(null);
@@ -58,7 +58,7 @@ public class CabinsAdministratorTest {
         // TODO review the generated test code and remove the default call to fail.
        
     }
-      @Test
+      @org.junit.Test
     public void testInsert_neg() {
         
         instance.getMainWindow().txtEtiqueta.setText("");
@@ -71,7 +71,7 @@ public class CabinsAdministratorTest {
        
     }
     
-       @Test
+      @org.junit.Test
     public void testInsert_pos() {
         
         instance.getMainWindow().txtEtiqueta.setText("Cabaña1");
