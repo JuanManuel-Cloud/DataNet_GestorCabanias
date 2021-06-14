@@ -35,7 +35,7 @@ public class MainController implements ActionListener, DataSubjects {
         this.vista.nuevoButton.addActionListener(this);
         this.vista.cabanasButton.addActionListener(this);
         this.vista.reservasButton.addActionListener(this);
-
+        
         dao = new CabinsDAO();
         administrator = new CabinsAdministrator(vista);
     }
