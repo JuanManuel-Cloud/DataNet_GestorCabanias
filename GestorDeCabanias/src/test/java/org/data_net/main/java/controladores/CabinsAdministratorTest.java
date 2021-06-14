@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author Familia
+ * @author Julieta
  */
 public class CabinsAdministratorTest {
      private MainWindow mainWindow;
@@ -49,7 +49,7 @@ public class CabinsAdministratorTest {
      */
     @Test
     public void testInsert_null() {
-         instance.getMainWindow().txtEtiqueta.setText(null);
+        instance.getMainWindow().txtEtiqueta.setText(null);
         instance.getMainWindow().txtCapacidad.setText(null);
         System.out.println("insert_null");
         Object expResult = null;

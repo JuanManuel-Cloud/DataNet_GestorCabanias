@@ -5,13 +5,18 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.data_net.main.java.interfaces.Administrator;
+import org.data_net.main.java.modelos.Cabin;
 import org.data_net.main.java.modelos.Reserve;
 import org.data_net.main.java.vistas.MainWindow;
 
 public class ReservesAdministrator implements Administrator  {
     private MainWindow mainWindow;
+    private DefaultTableModel modelo = new DefaultTableModel();
+
     public ReservesAdministrator(MainWindow mainWindow){
         this.mainWindow=mainWindow;
+        modelo = (DefaultTableModel) mainWindow.getTablaReserva().getModel();
+
     }
     
     @Override
@@ -23,23 +28,27 @@ public class ReservesAdministrator implements Administrator  {
         String inquilino = mainWindow.txtInquilino.getText();
         String cantInq = mainWindow.txtCantInq.getText();
         String costo = mainWindow.txtCosto.getText();
-        String telefono = mainWindow.txtTelefono.getText();
+        String telefono = mainWindow.txtTelefono.getText().replaceAll("[\\-\\+]", "");
         String mail = mainWindow.txtMail.getText();
         
        //chequeo posibles nulls 
         checkNull(inquilino,telefono,mail,cantInq,cabana,desde,hasta,costo);
 
         //chequeo posibles NumberFormatException
-        int tel=Integer.parseInt(telefono);
+        long tel=java.lang.Long.parseLong(telefono);
         int cant_inq=Integer.parseInt(cantInq);
         int cost=Integer.parseInt(costo);
+        int desde_val=Integer.parseInt(desde.replaceAll("[\\-\\+]", ""));
+        int hasta_val=Integer.parseInt(hasta.replaceAll("[\\-\\+]", ""));
         
         //chequeos de telefono
         checkTel(tel);
         
         //chequea intiquilinos
-        checkCantInq(cant_inq);
+        //checkCantInq(cant_inq);
         
+        //chequeo las fechas
+         checkFecha(desde_val,hasta_val);
         
         Reserve reserve= new Reserve(inquilino,telefono,mail,cant_inq,cabana,desde,hasta,cost);
         
@@ -47,12 +56,12 @@ public class ReservesAdministrator implements Administrator  {
         
         }catch(NumberFormatException e ){ 
           JOptionPane.showMessageDialog(mainWindow,"Formato Invalido" );
-            return null;
+           return null;
         }catch(NullPointerException e){
             JOptionPane.showMessageDialog(mainWindow,e.getMessage());
             return null;
         }catch(IllegalArgumentException e){
-        JOptionPane.showMessageDialog(mainWindow,e.getMessage() );
+            JOptionPane.showMessageDialog(mainWindow,e.getMessage() );
             return null;
         }
         
@@ -61,12 +70,10 @@ public class ReservesAdministrator implements Administrator  {
     
     @Override
     public void getAll(List lista) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        List<Reserve> listaReserves=new ArrayList<Reserve>();
+        limpiarTabla();
+        List<Reserve> listaReserves;
         listaReserves=(ArrayList<Reserve>) lista;
-        
-        modelo = (DefaultTableModel) mainWindow.tablaCabanas.getModel();
-        
+                
         Object[] objeto = new Object[9];
         for (int i = 0; i < lista.size(); i++) {
             objeto[0] = listaReserves.get(i).getId();
@@ -80,17 +87,17 @@ public class ReservesAdministrator implements Administrator  {
             objeto[8] = listaReserves.get(i).getCosto();
             modelo.addRow(objeto);
         }
-        mainWindow.tablaCabanas.setModel(modelo);
+        mainWindow.getTablaReserva().setModel(modelo);
     }
 
     @Override
     public String delete() {
-        int fila = mainWindow.tablaReservas.getSelectedRow();
+        int fila = mainWindow.getTablaReserva().getSelectedRow();
         if (fila == -1) {
             JOptionPane.showMessageDialog(mainWindow, "Debe Seleccionar una Fila");
             return "";
         } else {
-            String id = mainWindow.tablaReservas.getValueAt(fila, 0).toString();
+            String id = mainWindow.getTablaReserva().getValueAt(fila, 0).toString();
             return id;
         }
     }
@@ -118,11 +125,12 @@ public class ReservesAdministrator implements Administrator  {
         mainWindow.txtEtiqueta.requestFocus();
     }
 
-    private boolean checkTel(int tel) {
+    private boolean checkTel(long tel) {
+      
         if(tel>=1100000000){
-             return true;}
-        else{
-            throw new IllegalArgumentException("Campos invalidos");}
+          if(tel<= 9999999999.0){
+          return true;}}
+       throw new IllegalArgumentException("Campo: TELEFONO invalido. Ingrese un nuemero sin 15 y sin +54");
     }
 
     private void checkNull(String inquilino,String telefono,String mail,String cantInq,String cabana,String desde,String hasta,String costo) {
@@ -141,7 +149,28 @@ public class ReservesAdministrator implements Administrator  {
    }
 
     private void checkCantInq(int cant_inq, Cabin cabin) {
-
+     if(cabin.getCapacidad()<cant_inq){
+        throw new IllegalArgumentException("La cantidad de Inquilinos Supera la Capacidad de la Cabaña");
+     }
     }
+    
+    private boolean checkFecha(int desde, int hasta) {
+       if(desde<=hasta){
+           return true;
+           //falta chequear que la cabaña no este reservada, ver DAO!!!
+      }
+      throw new IllegalArgumentException("La fecha Ingresada no es correcta");
+      
+    }
+    
+    
+    @Override
+    public void limpiarTabla() {
+        for (int i = 0; i < mainWindow.getTablaReserva().getRowCount(); i++) {
+                modelo.removeRow(i);
+                i = i - 1;
+            }
+    }
+
     
 }

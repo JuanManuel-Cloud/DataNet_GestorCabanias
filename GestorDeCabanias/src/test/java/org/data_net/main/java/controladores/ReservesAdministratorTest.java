@@ -32,6 +32,7 @@ public class ReservesAdministratorTest {
     
     @BeforeAll
     public static void setUpClass() {
+       
     }
     
     @AfterAll
@@ -50,46 +51,97 @@ public class ReservesAdministratorTest {
      * Test of insert method, of class ReservesAdministrator.
      */
     
-
-   @Test
-    public void Reservas_telefono() {
-        mainWindow.txtTelefono.setText((Math.random()*1099999999)+"");
-        Reserve result=((Reserve)instance.insert());
-        // assertNull(result);//no se deberia poder agregar, pasa el test si retorna null
-       assertFalse(Integer.parseInt(result.getTelefono())<=1100000000);
-        //test numero menor a 1100000000
-       
-        mainWindow.txtTelefono.setText(Math.floor(Math.random()*(Math.pow(1.0,20.0))+2966999999.0)+"");
-        result=((Reserve)instance.insert());
+     @org.junit.Test
+    public void testInsert_posit() {
+     
+        cargar_Datos_positivos();
+        System.out.println("testInsert_posit");
         
-         assertFalse(Integer.parseInt(result.getTelefono())>=2966999999.0);
+        Reserve result=((Reserve)instance.insert());
+        //assertNotNull(result);//pasa la prueba si crea una reserva
+        //assertEquals(result.getCabana(),"CasaAzul");//cambiar al tipo cabaña ver DAO y model
+        assertEquals(result.getTelefono(),"3513194002");
+        assertEquals(result.getInquilino(),"Julieta");
+        assertEquals(result.getCantidadInq(),5);
+        assertEquals(result.getFechaDesde(),"06-12-2021");
+        assertEquals(result.getFechaHasta(),"07-12-2021");
+        assertEquals(result.getCosto(),3600);
+        assertEquals(result.getMail(),"julieta@yahoo.com");
+    }
+    /**
+     * Test of insert method, of class ReservesAdministrator.
+     */
+      @org.junit.Test
+    public void test_telefono() {
+         System.out.println("test_telefono"); 
+        
+        cargar_Datos_positivos(); 
+        mainWindow.txtTelefono.setText((Math.random()*1099999999)+"");//numero menor al MIN
+        Reserve result=((Reserve)instance.insert());
+         assertNull(result);//NO se deberia poder agregar, pasa el test si retorna null
+        
+      
+        cargar_Datos_positivos();
+        mainWindow.txtTelefono.setText(Math.floor(Math.random()*(Math.pow(1.0,20.0))+9999999999.0)+"");//nummayor al MAX
+        result=((Reserve)instance.insert());
+         assertNull(result);//NO se deberia poder agregar, pasa el test si retorna null
+         //assertFalse(Integer.parseInt(result.getTelefono())>=2966999999.0);
         //se testea un numero aleatorio mayor a 29669999, hasta 1*10^20
         
-        mainWindow.txtTelefono.setText(RandomStringUtils.random(10)+"");
+        cargar_Datos_positivos();
+        mainWindow.txtTelefono.setText("%$@dasd");
         result=((Reserve)instance.insert());
-        String telefono=result.getTelefono();
-        for(int i=0; i<=telefono.length();i++){
-         assertFalse(telefono.charAt(i)>58); //Pasa si solo haya numeros 
-        }
+        assertNull(result);//NO se deberia poder agregar, pasa el test si retorna null        
+
+       
+        
         //Testea caracteres especiales
     }
-    
-    @Test
-    public void Reservas_fechas() {
+    /**
+     * Test of insert method, of class ReservesAdministrator.
+     */
+       @org.junit.Test
+    public void test_fechas_neg() {
+        System.out.println("test_fechas");
+        cargar_Datos_positivos();
         mainWindow.txtDesde.setText("11-10-2021");
         mainWindow.txtHasta.setText("06-10-2021");
         Reserve result=((Reserve)instance.insert());
-        assertNull(result);
+        assertEquals(result,null); //assertNull(result);
         //test numero menor a 1100000000
         
-     String cabana = mainWindow.txtCabana.getText();
-         mainWindow.txtDesde.getText();
-        mainWindow.txtHasta.getText();
-         mainWindow.txtInquilino.getText();
-       mainWindow.txtCantInq.getText();
-        mainWindow.txtCosto.getText();
-         mainWindow.txtTelefono.getText();
-       mainWindow.txtMail.getText();
+     
     }
+
+    private void cargar_Datos_positivos() {
+        mainWindow.txtTelefono.setText("3513194002");
+        mainWindow.txtInquilino.setText("Julieta");
+        mainWindow.txtCantInq.setText("5");
+        mainWindow.txtCabana.setText("CasaAzul");
+        mainWindow.txtDesde.setText("06-12-2021");
+        mainWindow.txtHasta.setText("07-12-2021");
+        mainWindow.txtCosto.setText("3600");
+        mainWindow.txtMail.setText("julieta@yahoo.com"); 
+    }
+
+ 
+
+  
+
+    /**
+     * Test of check method, of class ReservesAdministrator.
+     */
+    @org.junit.Test
+    public void testCheck() {
+        System.out.println("check");
+        ReservesAdministrator instance = null;
+        Object expResult = null;
+        Object result = instance.check();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("FALTA IMPLEMENTAR");
+    }
+
+  
     
 }
