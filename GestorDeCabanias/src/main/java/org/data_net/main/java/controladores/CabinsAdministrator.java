@@ -1,0 +1,102 @@
+package org.data_net.main.java.controladores;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.data_net.main.java.interfaces.Administrator;
+import org.data_net.main.java.modelos.Cabin;
+import org.data_net.main.java.vistas.MainWindow;
+
+public class CabinsAdministrator implements Administrator {
+    private MainWindow mainWindow;
+    private DefaultTableModel modelo = new DefaultTableModel();
+
+    public CabinsAdministrator(MainWindow mainWindow){
+        this.mainWindow=mainWindow;
+        modelo = (DefaultTableModel) mainWindow.getTablaCabana().getModel();
+    }
+    
+    @Override
+    public Object insert() {
+        String etiqueta = mainWindow.txtEtiqueta.getText();
+        String capacidad = mainWindow.txtCapacidad.getText();
+        return new Cabin(etiqueta,Integer.parseInt(capacidad));
+    }
+
+    @Override
+    public void getAll(List lista) {
+        limpiarTabla();
+        List<Cabin> listaCabins;
+        listaCabins=(ArrayList<Cabin>) lista;
+        Object[] objeto = new Object[3];
+        for (int i = 0; i < lista.size(); i++) {
+            objeto[0] = listaCabins.get(i).getId();
+            objeto[1] = listaCabins.get(i).getEtiqueta();
+            objeto[2] = listaCabins.get(i).getCapacidad();
+            modelo.addRow(objeto);
+        }
+        mainWindow.getTablaCabana().setModel(modelo);
+    }
+    
+
+    @Override
+    public String getFila() {
+        int fila = mainWindow.getTablaCabana().getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(mainWindow, "Debe Seleccionar una Fila");
+            return "";
+        } else {
+            String id = mainWindow.getTablaCabana().getValueAt(fila, 0).toString();
+            return id;
+        }
+    }
+        
+    @Override
+    public Object update() {
+        int fila = mainWindow.getTablaCabana().getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(mainWindow, "Debe Seleccionar una Fila");
+            return "";
+        } else {
+            String etiqueta = mainWindow.txtEtiqueta.getText();
+            String capacidad = mainWindow.txtCapacidad.getText();
+            String id =  mainWindow.getTablaCabana().getValueAt(fila, 0).toString();
+            Cabin cabin = new Cabin (etiqueta,Integer.parseInt(capacidad));
+            cabin.setId(id);
+            return cabin;
+        }
+    }
+
+    @Override
+    public Object check() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public void limpiar() {
+        mainWindow.txtEtiqueta.setText("");
+        mainWindow.txtCapacidad.setText("");
+        mainWindow.txtEtiqueta.requestFocus();
+    }
+    
+    @Override
+    public void limpiarTabla() {
+        for (int i = 0; i < mainWindow.getTablaCabana().getRowCount(); i++) {
+                modelo.removeRow(i);
+                i = i - 1;
+            }
+    }
+
+    @Override
+    public void cargarCampos() {
+        int fila = mainWindow.getTablaCabana().getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(mainWindow, "Debe Seleccionar una Fila");
+        } else {
+        mainWindow.txtEtiqueta.setText(mainWindow.getTablaCabana().getValueAt(fila, 1).toString());
+        mainWindow.txtCapacidad.setText(mainWindow.getTablaCabana().getValueAt(fila, 2).toString());
+        }
+    }
+    
+}
