@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.data_net.main.java.controladores;
 
 import java.util.List;
@@ -17,10 +12,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- *
- * @author Familia
- */
 public class ReservesAdministratorTest {
      private MainWindow mainWindow;
      ReservesAdministrator instance;
@@ -122,14 +113,6 @@ public class ReservesAdministratorTest {
         mainWindow.txtHasta.setText("07-12-2021");
         mainWindow.txtCosto.setText("3600");
         mainWindow.txtMail.setText("julieta@yahoo.com"); 
+
     }
-
- 
-
-  
-
-   
-
-  
-    
 }
